@@ -1,32 +1,420 @@
+```html
 <!doctype html>
-<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Near Miss Report</title><link rel="stylesheet" href="style.css"></head>
-<body><div class="wrap">
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>Near Miss Report</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+.media-section {
+    margin-top: 25px;
+    padding-top: 15px;
+    border-top: 1px solid #ddd;
+}
+
+.photo-preview {
+    max-width: 100%;
+    width: 500px;
+    max-height: 450px;
+    object-fit: contain;
+    display: block;
+    margin: 10px auto;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+
+.video-preview {
+    width: 100%;
+    max-width: 650px;
+    max-height: 450px;
+    display: block;
+    margin: 10px auto;
+    border-radius: 10px;
+    background: #000;
+}
+
+.media-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.video-print-box {
+    display: none;
+}
+
+@media print {
+
+    body {
+        background: white !important;
+    }
+
+    .no-print {
+        display: none !important;
+    }
+
+    .wrap {
+        max-width: 100% !important;
+        padding: 0 !important;
+    }
+
+    .card {
+        box-shadow: none !important;
+        border: none !important;
+    }
+
+    .photo-preview {
+        max-width: 500px;
+        max-height: 400px;
+        page-break-inside: avoid;
+    }
+
+    .video-preview {
+        display: none !important;
+    }
+
+    .video-print-box {
+        display: block !important;
+        border: 1px solid #999;
+        padding: 15px;
+        margin-top: 10px;
+        text-align: center;
+    }
+
+    a {
+        color: black !important;
+        text-decoration: underline;
+    }
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="wrap">
+
 <div class="card" id="report"></div>
-<div class="card no-print"><h2>Supervisor Verification</h2>
-<label>Verified By<input id="by"></label><label>Supervisor Remarks<textarea id="remarks"></textarea></label>
-<button class="primary" onclick="verify()">Verify Report</button>
-<button onclick="window.print()">🖨️ Print Report</button><div id="msg"></div></div></div>
+
+<div class="card no-print">
+
+<h2>Supervisor Verification</h2>
+
+<label>
+Verified By
+<input id="by">
+</label>
+
+<label>
+Supervisor Remarks
+<textarea id="remarks"></textarea>
+</label>
+
+<button class="primary" onclick="verify()">
+Verify Report
+</button>
+
+<button onclick="window.print()">
+🖨️ Print Report
+</button>
+
+<div id="msg"></div>
+
+</div>
+
+</div>
+
 <script>
+
 const API_URL="https://script.google.com/macros/s/AKfycbzqnmmkYRf5kFAn6MPQPbbqfgXhbPcN4oMpZdKL-f2dFa9rtuXaaUmWPPBbo5RalajfTQ/exec";
-const x=JSON.parse(localStorage.getItem("nearMissReport")||"null");
-if(!x){location.href="dashboard.html"}
-else{
- report.innerHTML=`<h1>Safety Near Miss Report</h1>
- <p><b>Report ID:</b> ${x["Report ID"]}</p>
- <div class="grid"><p><b>Employee:</b><br>${x["Employee Name"]}</p><p><b>Code:</b><br>${x["Employee Code"]}</p>
- <p><b>Department:</b><br>${x.Department}</p><p><b>Designation:</b><br>${x.Designation}</p>
- <p><b>Location:</b><br>${x.Location}</p><p><b>Risk:</b><br>${x["Risk Level"]}</p></div>
- <hr><h3>Description</h3><p>${x["Near Miss Description"]}</p>
- <h3>Potential Consequence</h3><p>${x["Potential Consequence"]}</p>
- <h3>Immediate Action</h3><p>${x["Immediate Action"]}</p>
- ${x["Photo URL"]?`<p><a href="${x["Photo URL"]}" target="_blank">View Photo</a></p>`:""}
- ${x["Video URL"]?`<p><a href="${x["Video URL"]}" target="_blank">View Video</a></p>`:""}
- <p><b>Status:</b> ${x.Status}</p>`;
+
+const x = JSON.parse(
+    localStorage.getItem("nearMissReport") || "null"
+);
+
+if (!x) {
+
+    location.href="dashboard.html";
+
 }
-async function verify(){
- const payload={action:"verify",reportId:x["Report ID"],verifiedBy:by.value,remarks:remarks.value};
- const r=await fetch(API_URL,{method:"POST",body:JSON.stringify(payload)});const j=await r.json();
- msg.innerHTML=j.ok?'<div class=success>Report verified successfully.</div>':`<div class=error>${j.error}</div>`;
+
+else {
+
+    let photoHTML = "";
+    let videoHTML = "";
+
+    /* =========================
+       PHOTO
+       ========================= */
+
+    if (x["Photo URL"]) {
+
+        photoHTML = `
+        <div class="media-section">
+
+            <div class="media-title">
+                📷 Near Miss Photo
+            </div>
+
+            <img
+                class="photo-preview"
+                src="${x["Photo URL"]}"
+                alt="Near Miss Photo"
+                onerror="this.style.display='none'; document.getElementById('photoError').style.display='block';"
+            >
+
+            <div id="photoError"
+                 style="display:none;text-align:center;color:#b00000;">
+                Photo preview could not be loaded.
+                <br>
+                <a href="${x["Photo URL"]}" target="_blank">
+                    Open Photo
+                </a>
+            </div>
+
+            <p style="text-align:center;">
+                <a href="${x["Photo URL"]}" target="_blank">
+                    🔗 Open Full Photo
+                </a>
+            </p>
+
+        </div>
+        `;
+
+    }
+
+
+    /* =========================
+       VIDEO
+       ========================= */
+
+    if (x["Video URL"]) {
+
+        videoHTML = `
+        <div class="media-section">
+
+            <div class="media-title">
+                🎥 Near Miss Video
+            </div>
+
+            <video
+                class="video-preview"
+                controls
+                preload="metadata"
+            >
+                <source src="${x["Video URL"]}">
+                Your browser does not support video playback.
+            </video>
+
+            <p class="video-print-box">
+
+                🎥 <b>Near Miss Video Evidence</b>
+
+                <br><br>
+
+                Video is available at:
+
+                <br>
+
+                <a href="${x["Video URL"]}" target="_blank">
+                    ${x["Video URL"]}
+                </a>
+
+                <br><br>
+
+                <b>Note:</b>
+                The video can be opened using the above link.
+
+            </p>
+
+            <p style="text-align:center;" class="no-print">
+
+                <a href="${x["Video URL"]}" target="_blank">
+                    🔗 Open Full Video
+                </a>
+
+            </p>
+
+        </div>
+        `;
+
+    }
+
+
+    /* =========================
+       REPORT
+       ========================= */
+
+    report.innerHTML = `
+
+    <h1>Safety Near Miss Report</h1>
+
+    <p>
+        <b>Report ID:</b>
+        ${x["Report ID"]}
+    </p>
+
+
+    <div class="grid">
+
+        <p>
+            <b>Employee:</b><br>
+            ${x["Employee Name"]}
+        </p>
+
+        <p>
+            <b>Employee Code:</b><br>
+            ${x["Employee Code"]}
+        </p>
+
+        <p>
+            <b>Department:</b><br>
+            ${x.Department}
+        </p>
+
+        <p>
+            <b>Designation:</b><br>
+            ${x.Designation}
+        </p>
+
+        <p>
+            <b>Location:</b><br>
+            ${x.Location}
+        </p>
+
+        <p>
+            <b>Risk Level:</b><br>
+            ${x["Risk Level"]}
+        </p>
+
+    </div>
+
+
+    <hr>
+
+
+    <h3>
+        Near Miss Description
+    </h3>
+
+    <p>
+        ${x["Near Miss Description"]}
+    </p>
+
+
+    <h3>
+        Potential Consequence
+    </h3>
+
+    <p>
+        ${x["Potential Consequence"]}
+    </p>
+
+
+    <h3>
+        Immediate Action
+    </h3>
+
+    <p>
+        ${x["Immediate Action"]}
+    </p>
+
+
+    ${photoHTML}
+
+    ${videoHTML}
+
+
+    <div class="media-section">
+
+        <h3>
+            Report Status
+        </h3>
+
+        <p>
+            <b>${x.Status}</b>
+        </p>
+
+    </div>
+
+    `;
+
 }
-</script></body></html>
+
+
+/* =========================
+   VERIFY REPORT
+   ========================= */
+
+async function verify() {
+
+    const payload = {
+
+        action: "verify",
+
+        reportId: x["Report ID"],
+
+        verifiedBy:
+            document.getElementById("by").value,
+
+        remarks:
+            document.getElementById("remarks").value
+
+    };
+
+
+    try {
+
+        const r = await fetch(
+            API_URL,
+            {
+                method: "POST",
+                body: JSON.stringify(payload)
+            }
+        );
+
+
+        const j = await r.json();
+
+
+        if (j.ok) {
+
+            document.getElementById("msg").innerHTML =
+            '<div class="success">' +
+            'Report verified successfully.' +
+            '</div>';
+
+        }
+
+        else {
+
+            document.getElementById("msg").innerHTML =
+            '<div class="error">' +
+            j.error +
+            '</div>';
+
+        }
+
+    }
+
+    catch (error) {
+
+        document.getElementById("msg").innerHTML =
+        '<div class="error">' +
+        'Verification failed: ' +
+        error.message +
+        '</div>';
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>
+```
