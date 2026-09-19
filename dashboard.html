@@ -26,7 +26,7 @@
 <section class="card"><h2>Reports</h2><div id="table"></div></section>
 </div>
 <script>
-const API_URL="PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE"; let reports=[],dc,rc;
+const API_URL="https://script.google.com/macros/s/AKfycbzqnmmkYRf5kFAn6MPQPbbqfgXhbPcN4oMpZdKL-f2dFa9rtuXaaUmWPPBbo5RalajfTQ/exec"; let reports=[],dc,rc;
 async function load(){
  if(API_URL.includes("PASTE_")){document.getElementById("table").innerHTML="<div class=error>Add Apps Script URL.</div>";return}
  const r=await fetch(API_URL,{method:"POST",body:JSON.stringify({action:"list"})});
