@@ -1,89 +1,1277 @@
+```html
 <!doctype html>
 <html lang="en">
+
 <head>
+
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<meta name="viewport"
+content="width=device-width,initial-scale=1">
+
 <title>Safety Near Miss Report</title>
+
 <link rel="stylesheet" href="style.css">
+
+<style>
+
+/* =========================
+   STEP INDICATOR
+   ========================= */
+
+.steps{
+display:flex;
+justify-content:center;
+align-items:center;
+gap:10px;
+margin-bottom:20px;
+}
+
+.step{
+padding:10px 18px;
+border-radius:30px;
+background:#e8edf2;
+color:#667;
+font-weight:bold;
+}
+
+.step.active{
+background:#1261a0;
+color:white;
+}
+
+
+/* =========================
+   PAGE CONTROL
+   ========================= */
+
+.form-page{
+display:none;
+}
+
+.form-page.active{
+display:block;
+}
+
+
+/* =========================
+   BUTTONS
+   ========================= */
+
+.button-row{
+display:flex;
+gap:10px;
+margin-top:20px;
+}
+
+.button-row button{
+flex:1;
+}
+
+.secondary{
+background:#e7edf2;
+color:#17212b;
+}
+
+.primary{
+background:#1261a0;
+color:white;
+}
+
+
+/* =========================
+   DEPARTMENT
+   ========================= */
+
+select{
+background:white;
+}
+
+
+/* =========================
+   MEDIA PREVIEW
+   ========================= */
+
+.preview-box{
+margin-top:15px;
+padding:12px;
+background:#f5f7f9;
+border-radius:10px;
+}
+
+.preview-box img{
+max-width:100%;
+max-height:250px;
+border-radius:10px;
+margin-top:10px;
+}
+
+.preview-box video{
+max-width:100%;
+max-height:250px;
+border-radius:10px;
+margin-top:10px;
+}
+
+
+/* =========================
+   SUCCESS REPORT
+   ========================= */
+
+.report-success{
+text-align:center;
+padding:25px;
+}
+
+.report-id{
+font-size:24px;
+font-weight:bold;
+color:#1261a0;
+margin:15px 0;
+}
+
+
+/* =========================
+   MOBILE
+   ========================= */
+
+@media(max-width:600px){
+
+.steps{
+font-size:13px;
+}
+
+.step{
+padding:8px 12px;
+}
+
+.button-row{
+flex-direction:column;
+}
+
+}
+
+</style>
+
 </head>
+
+
 <body>
+
+
 <div class="wrap">
-<header><h1>Safety Near Miss Report</h1><p>Report an unsafe condition or near miss</p></header>
+
+
+<header>
+
+<h1>Safety Near Miss Report</h1>
+
+<p>
+Report an unsafe condition or near miss
+</p>
+
+</header>
+
+
+
+<!-- =========================
+     STEP INDICATOR
+     ========================= -->
+
+<div class="steps">
+
+<div id="step1Indicator"
+class="step active">
+
+1. Employee Information
+
+</div>
+
+<div id="step2Indicator"
+class="step">
+
+2. Near Miss Details
+
+</div>
+
+</div>
+
+
 
 <form id="reportForm">
-<section class="card">
+
+
+<!-- ==================================================
+     PAGE 1
+     EMPLOYEE INFORMATION
+     ================================================== -->
+
+<section
+id="page1"
+class="card form-page active">
+
+
 <h2>Employee Information</h2>
+
+
 <div class="grid">
-<label>Employee Code<input name="employeeCode" required></label>
-<label>Employee Name<input name="employeeName" required></label>
-<label>Department<input name="department" required></label>
-<label>Designation<input name="designation"></label>
-<label>Location<input name="location" required></label>
-<label>Risk Level
-<select name="risk" required><option value="">Select</option><option>Low</option><option>Medium</option><option>High</option><option>Critical</option></select>
+
+
+<!-- Employee Code -->
+
+<label>
+
+Employee Code
+
+<input
+name="employeeCode"
+id="employeeCode"
+required
+placeholder="Enter employee code">
+
 </label>
+
+
+
+<!-- Employee Name -->
+
+<label>
+
+Employee Name
+
+<input
+name="employeeName"
+id="employeeName"
+required
+placeholder="Enter employee name">
+
+</label>
+
+
+
+<!-- Department -->
+
+<label>
+
+Department
+
+<select
+name="department"
+id="department"
+required>
+
+<option value="">
+Select Department
+</option>
+
+<option>Production</option>
+
+<option>Machine Shop</option>
+
+<option>CNC Machine Shop</option>
+
+<option>Conventional Machine Shop</option>
+
+<option>Foundry</option>
+
+<option>Melting</option>
+
+<option>Moulding</option>
+
+<option>Core Making</option>
+
+<option>Fettling</option>
+
+<option>Grinding</option>
+
+<option>Finishing</option>
+
+<option>Heat Treatment</option>
+
+<option>Welding</option>
+
+<option>Fabrication</option>
+
+<option>Assembly</option>
+
+<option>Quality Control / QC</option>
+
+<option>Quality Assurance / QA</option>
+
+<option>Maintenance</option>
+
+<option>Mechanical Maintenance</option>
+
+<option>Electrical Maintenance</option>
+
+<option>Tool Room</option>
+
+<option>Stores</option>
+
+<option>Raw Material Store</option>
+
+<option>Finished Goods Store</option>
+
+<option>Dispatch</option>
+
+<option>Packing</option>
+
+<option>Purchase</option>
+
+<option>Planning / PPC</option>
+
+<option>Engineering</option>
+
+<option>Design</option>
+
+<option>Inspection</option>
+
+<option>Safety / HSE</option>
+
+<option>Administration</option>
+
+<option>HR</option>
+
+<option>IT</option>
+
+<option>Security</option>
+
+<option>Transport</option>
+
+<option>Utilities</option>
+
+<option>Boiler / Compressor</option>
+
+<option>Laboratory</option>
+
+<option>Other</option>
+
+</select>
+
+</label>
+
+
+
+<!-- Designation -->
+
+<label>
+
+Designation
+
+<input
+name="designation"
+id="designation"
+placeholder="Enter designation">
+
+</label>
+
+
+
+<!-- Location -->
+
+<label>
+
+Location
+
+<input
+name="location"
+id="location"
+required
+placeholder="Where did the near miss occur?">
+
+</label>
+
 </div>
+
+
+
+<div class="button-row">
+
+<button
+type="button"
+class="primary"
+onclick="goToPage2()">
+
+Save & Next →
+
+</button>
+
+</div>
+
+
 </section>
 
-<section class="card">
+
+
+<!-- ==================================================
+     PAGE 2
+     NEAR MISS DETAILS
+     ================================================== -->
+
+<section
+id="page2"
+class="card form-page">
+
+
 <h2>Near Miss Details</h2>
-<label>Description<textarea name="description" required></textarea></label>
-<label>Potential Consequence<textarea name="consequence"></textarea></label>
-<label>Immediate Action<textarea name="immediateAction"></textarea></label>
-</section>
 
-<section class="card">
-<h2>Evidence</h2>
+
+<!-- Description -->
+
+<label>
+
+What happened?
+
+<textarea
+name="description"
+id="description"
+required
+placeholder="Describe the near miss / unsafe condition"></textarea>
+
+</label>
+
+
+
+<!-- Potential Consequence -->
+
+<label>
+
+Potential Consequence
+
+<textarea
+name="consequence"
+id="consequence"
+placeholder="What could have happened?"></textarea>
+
+</label>
+
+
+
+<!-- Immediate Action -->
+
+<label>
+
+Immediate Action Taken
+
+<textarea
+name="immediateAction"
+id="immediateAction"
+placeholder="What action was taken immediately?"></textarea>
+
+</label>
+
+
+
+<!-- Risk -->
+
+<label>
+
+Risk Level
+
+<select
+name="risk"
+id="risk"
+required>
+
+<option value="">
+Select Risk Level
+</option>
+
+<option value="Low">
+Low
+</option>
+
+<option value="Medium">
+Medium
+</option>
+
+<option value="High">
+High
+</option>
+
+<option value="Critical">
+Critical
+</option>
+
+</select>
+
+</label>
+
+
+
+<!-- =========================
+     EVIDENCE
+     ========================= -->
+
+<h2 style="margin-top:25px;">
+Evidence
+</h2>
+
+
 <div class="media-grid">
-<label class="upload">📷 Take Photo<input id="photoCamera" type="file" accept="image/*" capture="environment"></label>
-<label class="upload">🖼️ Choose Photo<input id="photoGallery" type="file" accept="image/*"></label>
-<label class="upload">🎥 Record Video<input id="videoCamera" type="file" accept="video/*" capture="environment"></label>
-<label class="upload">📁 Choose Video<input id="videoGallery" type="file" accept="video/*"></label>
+
+
+<!-- CAMERA PHOTO -->
+
+<label class="upload">
+
+📷 Take Photo
+
+<input
+id="photoCamera"
+type="file"
+accept="image/*"
+capture="environment">
+
+</label>
+
+
+
+<!-- GALLERY PHOTO -->
+
+<label class="upload">
+
+🖼️ Choose Photo
+
+<input
+id="photoGallery"
+type="file"
+accept="image/*">
+
+</label>
+
+
+
+<!-- CAMERA VIDEO -->
+
+<label class="upload">
+
+🎥 Record Video
+
+<input
+id="videoCamera"
+type="file"
+accept="video/*"
+capture="environment">
+
+</label>
+
+
+
+<!-- PHONE VIDEO -->
+
+<label class="upload">
+
+📁 Choose Video
+
+<input
+id="videoGallery"
+type="file"
+accept="video/*">
+
+</label>
+
+
 </div>
-<div id="preview"></div>
+
+
+
+<div
+id="preview"
+class="preview-box">
+
+No evidence selected.
+
+</div>
+
+
+
+<!-- =========================
+     BUTTONS
+     ========================= -->
+
+<div class="button-row">
+
+
+<button
+type="button"
+class="secondary"
+onclick="goToPage1()">
+
+← Back
+
+</button>
+
+
+
+<button
+type="submit"
+class="primary">
+
+Submit Near Miss Report
+
+</button>
+
+
+</div>
+
+
+
+<div id="msg"></div>
+
+
 </section>
 
-<button class="primary" type="submit">Submit Near Miss Report</button>
-<div id="msg"></div>
+
 </form>
+
+
 </div>
+
+
+
 <script>
-const API_URL="https://script.google.com/macros/s/AKfycbzqnmmkYRf5kFAn6MPQPbbqfgXhbPcN4oMpZdKL-f2dFa9rtuXaaUmWPPBbo5RalajfTQ/exec";
+
+
+/* ==================================================
+   GOOGLE APPS SCRIPT URL
+   ================================================== */
+
+const API_URL =
+"https://script.google.com/macros/s/AKfycbzqnmmkYRf5kFAn6MPQPbbqfgXhbPcN4oMpZdKL-f2dFa9rtuXaaUmWPPBbo5RalajfTQ/exec";
+
+
+
+/* ==================================================
+   PAGE NAVIGATION
+   ================================================== */
+
+function goToPage2(){
+
+const form =
+document.getElementById("reportForm");
+
+
+/* Validate first page */
+
+const employeeCode =
+document.getElementById("employeeCode");
+
+const employeeName =
+document.getElementById("employeeName");
+
+const department =
+document.getElementById("department");
+
+const location =
+document.getElementById("location");
+
+
+if(!employeeCode.checkValidity()){
+
+employeeCode.reportValidity();
+return;
+
+}
+
+
+if(!employeeName.checkValidity()){
+
+employeeName.reportValidity();
+return;
+
+}
+
+
+if(!department.checkValidity()){
+
+department.reportValidity();
+return;
+
+}
+
+
+if(!location.checkValidity()){
+
+location.reportValidity();
+return;
+
+}
+
+
+/* Save employee information */
+
+const employeeData = {
+
+employeeCode:
+employeeCode.value,
+
+employeeName:
+employeeName.value,
+
+department:
+department.value,
+
+designation:
+document.getElementById("designation").value,
+
+location:
+location.value
+
+};
+
+
+sessionStorage.setItem(
+"employeeData",
+JSON.stringify(employeeData)
+);
+
+
+/* Show page 2 */
+
+document.getElementById("page1")
+.classList.remove("active");
+
+document.getElementById("page2")
+.classList.add("active");
+
+
+document.getElementById("step1Indicator")
+.classList.remove("active");
+
+document.getElementById("step2Indicator")
+.classList.add("active");
+
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+}
+
+
+
+function goToPage1(){
+
+document.getElementById("page2")
+.classList.remove("active");
+
+document.getElementById("page1")
+.classList.add("active");
+
+
+document.getElementById("step2Indicator")
+.classList.remove("active");
+
+document.getElementById("step1Indicator")
+.classList.add("active");
+
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+}
+
+
+
+/* ==================================================
+   FILE TO BASE64
+   ================================================== */
 
 function fileToBase64(file){
- return new Promise((resolve,reject)=>{
-   if(!file){resolve(null);return}
-   const r=new FileReader();
-   r.onload=()=>resolve({data:r.result.split(",")[1],type:file.type,name:file.name});
-   r.onerror=reject;r.readAsDataURL(file);
- });
+
+return new Promise((resolve,reject)=>{
+
+if(!file){
+
+resolve(null);
+
+return;
+
 }
-const $=id=>document.getElementById(id);
-function selectedFile(a,b){return $(a).files[0]||$(b).files[0]||null}
-["photoCamera","photoGallery","videoCamera","videoGallery"].forEach(id=>{
- $(id).addEventListener("change",()=>{$("preview").innerHTML="<small>Evidence selected.</small>"});
+
+
+const reader =
+new FileReader();
+
+
+reader.onload = ()=>{
+
+resolve({
+
+data:
+reader.result.split(",")[1],
+
+type:
+file.type,
+
+name:
+file.name
+
 });
 
-$("reportForm").addEventListener("submit",async e=>{
- e.preventDefault();
- if(API_URL.includes("PASTE_")){alert("Please add your Apps Script Web App URL in index.html");return}
- const f=new FormData(e.target);
- $("msg").textContent="Submitting...";
- try{
-   const [photo,video]=await Promise.all([
-     fileToBase64(selectedFile("photoCamera","photoGallery")),
-     fileToBase64(selectedFile("videoCamera","videoGallery"))
-   ]);
-   const payload={action:"submit",employeeCode:f.get("employeeCode"),employeeName:f.get("employeeName"),
-   department:f.get("department"),designation:f.get("designation"),location:f.get("location"),
-   risk:f.get("risk"),description:f.get("description"),consequence:f.get("consequence"),
-   immediateAction:f.get("immediateAction"),photo,video};
-   const res=await fetch(API_URL,{method:"POST",body:JSON.stringify(payload)});
-   const out=await res.json();
-   if(!out.ok) throw new Error(out.error);
-   $("msg").innerHTML=`<div class="success">Report submitted successfully.<br><b>Report ID: ${out.reportId}</b></div>`;
-   e.target.reset();
- }catch(err){$("msg").innerHTML=`<div class="error">${err.message}</div>`}
+};
+
+
+reader.onerror =
+reject;
+
+
+reader.readAsDataURL(file);
+
 });
+
+}
+
+
+
+/* ==================================================
+   GET ELEMENT
+   ================================================== */
+
+const $ =
+id =>
+document.getElementById(id);
+
+
+
+/* ==================================================
+   SELECT PHOTO / VIDEO
+   ================================================== */
+
+function selectedFile(cameraId,galleryId){
+
+return (
+$(cameraId).files[0] ||
+$(galleryId).files[0] ||
+null
+);
+
+}
+
+
+
+/* ==================================================
+   MEDIA PREVIEW
+   ================================================== */
+
+function updatePreview(){
+
+const photo =
+selectedFile(
+"photoCamera",
+"photoGallery"
+);
+
+
+const video =
+selectedFile(
+"videoCamera",
+"videoGallery"
+);
+
+
+let html = "";
+
+
+if(photo){
+
+const url =
+URL.createObjectURL(photo);
+
+
+html += `
+
+<b>📷 Photo Selected</b>
+
+<br>
+
+<img
+src="${url}"
+alt="Photo Preview">
+
+`;
+
+}
+
+
+if(video){
+
+const url =
+URL.createObjectURL(video);
+
+
+html += `
+
+<br><br>
+
+<b>🎥 Video Selected</b>
+
+<br>
+
+<video
+src="${url}"
+controls>
+</video>
+
+`;
+
+}
+
+
+if(!html){
+
+html =
+"No evidence selected.";
+
+}
+
+
+$("preview").innerHTML =
+html;
+
+}
+
+
+
+/* ==================================================
+   MEDIA EVENTS
+   ================================================== */
+
+[
+"photoCamera",
+"photoGallery",
+"videoCamera",
+"videoGallery"
+
+].forEach(id=>{
+
+$(id).addEventListener(
+"change",
+updatePreview
+);
+
+});
+
+
+
+/* ==================================================
+   SUBMIT REPORT
+   ================================================== */
+
+$("reportForm").addEventListener(
+"submit",
+async function(e){
+
+e.preventDefault();
+
+
+if(
+API_URL.includes(
+"PASTE_"
+)
+){
+
+alert(
+"Please add your Apps Script Web App URL."
+);
+
+return;
+
+}
+
+
+/* Employee data */
+
+const employeeData =
+JSON.parse(
+sessionStorage.getItem(
+"employeeData"
+) || "{}"
+);
+
+
+/* Validate employee data */
+
+if(!employeeData.employeeCode){
+
+alert(
+"Employee information is missing. Please go back."
+);
+
+goToPage1();
+
+return;
+
+}
+
+
+/* Near miss fields */
+
+const description =
+$("description").value;
+
+const consequence =
+$("consequence").value;
+
+const immediateAction =
+$("immediateAction").value;
+
+const risk =
+$("risk").value;
+
+
+if(!description){
+
+$("description").reportValidity();
+
+return;
+
+}
+
+
+if(!risk){
+
+$("risk").reportValidity();
+
+return;
+
+}
+
+
+$("msg").innerHTML =
+"<div>Submitting report...</div>";
+
+
+try{
+
+
+/* Convert evidence */
+
+const [
+photo,
+video
+] = await Promise.all([
+
+fileToBase64(
+selectedFile(
+"photoCamera",
+"photoGallery"
+)
+),
+
+fileToBase64(
+selectedFile(
+"videoCamera",
+"videoGallery"
+)
+)
+
+]);
+
+
+
+/* =========================
+   CREATE PAYLOAD
+   ========================= */
+
+const payload = {
+
+action:
+"submit",
+
+
+employeeCode:
+employeeData.employeeCode,
+
+employeeName:
+employeeData.employeeName,
+
+department:
+employeeData.department,
+
+designation:
+employeeData.designation,
+
+location:
+employeeData.location,
+
+
+description:
+description,
+
+consequence:
+consequence,
+
+immediateAction:
+immediateAction,
+
+risk:
+risk,
+
+
+photo:
+photo,
+
+video:
+video
+
+};
+
+
+
+/* =========================
+   SEND TO GOOGLE
+   ========================= */
+
+const response =
+await fetch(
+
+API_URL,
+
+{
+
+method:"POST",
+
+body:
+JSON.stringify(payload)
+
+}
+
+);
+
+
+
+const result =
+await response.json();
+
+
+
+if(!result.ok){
+
+throw new Error(
+result.error
+);
+
+}
+
+
+
+/* =========================
+   SUCCESS
+   ========================= */
+
+$("msg").innerHTML = `
+
+<div class="success report-success">
+
+<h2>
+✅ Report Submitted Successfully
+</h2>
+
+<p>
+Your Safety Near Miss report has been submitted.
+</p>
+
+<div class="report-id">
+
+${result.reportId}
+
+</div>
+
+<p>
+Please keep this Report ID for future reference.
+</p>
+
+<button
+type="button"
+class="primary"
+onclick="location.reload()">
+
+Submit Another Report
+
+</button>
+
+</div>
+
+`;
+
+
+/* Clear session */
+
+sessionStorage.removeItem(
+"employeeData"
+);
+
+
+}
+
+catch(error){
+
+$("msg").innerHTML = `
+
+<div class="error">
+
+❌ Submission Failed
+
+<br><br>
+
+${error.message}
+
+</div>
+
+`;
+
+}
+
+});
+
+
+
+/* ==================================================
+   RESTORE EMPLOYEE DATA
+   ================================================== */
+
+window.addEventListener(
+"load",
+function(){
+
+const saved =
+JSON.parse(
+sessionStorage.getItem(
+"employeeData"
+) || "null"
+);
+
+
+if(saved){
+
+$("employeeCode").value =
+saved.employeeCode || "";
+
+$("employeeName").value =
+saved.employeeName || "";
+
+$("department").value =
+saved.department || "";
+
+$("designation").value =
+saved.designation || "";
+
+$("location").value =
+saved.location || "";
+
+}
+
+});
+
+
 </script>
-</body></html>
+
+</body>
+
+</html>
+```
