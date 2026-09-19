@@ -1,326 +1,866 @@
 <!doctype html>
-<html>
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<html lang="en">
 
-<title>Near Miss Report</title>
+<head>
+
+<meta charset="utf-8">
+
+<meta name="viewport"
+content="width=device-width,initial-scale=1">
+
+<title>Safety Near Miss Report</title>
 
 <link rel="stylesheet" href="style.css">
 
 <style>
-.media-section {
-    margin-top: 25px;
-    padding-top: 15px;
-    border-top: 1px solid #ddd;
+
+/* =====================================================
+   PROFESSIONAL REPORT DESIGN
+   ===================================================== */
+
+:root{
+    --primary:#123b5d;
+    --secondary:#1261a0;
+    --light:#f3f6f9;
+    --border:#d7dee5;
+    --text:#17212b;
 }
 
-.photo-preview {
-    max-width: 100%;
-    width: 500px;
-    max-height: 450px;
-    object-fit: contain;
-    display: block;
-    margin: 10px auto;
-    border: 1px solid #ccc;
-    border-radius: 10px;
+
+/* Main report */
+
+.report-paper{
+    background:#fff;
+    border:1px solid #d5dce2;
+    border-radius:12px;
+    overflow:hidden;
 }
 
-.video-preview {
-    width: 100%;
-    max-width: 650px;
-    max-height: 450px;
-    display: block;
-    margin: 10px auto;
-    border-radius: 10px;
-    background: #000;
+
+/* Header */
+
+.report-header{
+    background:linear-gradient(135deg,#123b5d,#1261a0);
+    color:white;
+    padding:24px 28px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:20px;
 }
 
-.media-title {
-    font-size: 18px;
-    font-weight: bold;
-    margin-top: 20px;
+.company-title{
+    font-size:25px;
+    font-weight:700;
 }
 
-.video-print-box {
-    display: none;
+.company-subtitle{
+    margin-top:5px;
+    font-size:13px;
+    opacity:.9;
 }
 
-@media print {
-
-    body {
-        background: white !important;
-    }
-
-    .no-print {
-        display: none !important;
-    }
-
-    .wrap {
-        max-width: 100% !important;
-        padding: 0 !important;
-    }
-
-    .card {
-        box-shadow: none !important;
-        border: none !important;
-    }
-
-    .photo-preview {
-        max-width: 500px;
-        max-height: 400px;
-        page-break-inside: avoid;
-    }
-
-    .video-preview {
-        display: none !important;
-    }
-
-    .video-print-box {
-        display: block !important;
-        border: 1px solid #999;
-        padding: 15px;
-        margin-top: 10px;
-        text-align: center;
-    }
-
-    a {
-        color: black !important;
-        text-decoration: underline;
-    }
+.report-title{
+    text-align:right;
 }
+
+.report-title h1{
+    margin:0;
+    font-size:24px;
+}
+
+.report-title p{
+    margin:6px 0 0;
+    font-size:13px;
+}
+
+
+/* Report ID */
+
+.report-id-box{
+    padding:15px 28px;
+    background:#f5f8fa;
+    border-bottom:1px solid var(--border);
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.report-id{
+    font-size:19px;
+    font-weight:700;
+    color:var(--primary);
+}
+
+.report-date{
+    font-size:13px;
+    color:#596773;
+}
+
+
+/* Section */
+
+.report-section{
+    padding:22px 28px;
+    border-bottom:1px solid var(--border);
+}
+
+.section-title{
+    font-size:16px;
+    font-weight:700;
+    color:var(--primary);
+
+    border-left:4px solid var(--secondary);
+
+    padding-left:10px;
+    margin-bottom:16px;
+}
+
+
+/* Information grid */
+
+.info-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    border:1px solid var(--border);
+    border-radius:8px;
+    overflow:hidden;
+}
+
+.info-item{
+    padding:13px 15px;
+    border-bottom:1px solid var(--border);
+    border-right:1px solid var(--border);
+}
+
+.info-item:nth-child(even){
+    border-right:none;
+}
+
+.info-label{
+    font-size:11px;
+    text-transform:uppercase;
+    color:#6b7782;
+    font-weight:700;
+    margin-bottom:4px;
+}
+
+.info-value{
+    font-size:14px;
+    font-weight:600;
+}
+
+
+/* Risk */
+
+.risk{
+    display:inline-block;
+    padding:6px 15px;
+    border-radius:20px;
+    font-size:12px;
+    font-weight:700;
+}
+
+.risk-low{
+    background:#dff5e5;
+    color:#14652a;
+}
+
+.risk-medium{
+    background:#fff1c7;
+    color:#765500;
+}
+
+.risk-high{
+    background:#ffe1d6;
+    color:#a63200;
+}
+
+.risk-critical{
+    background:#ffd9df;
+    color:#a00024;
+}
+
+
+/* Description boxes */
+
+.detail-box{
+    background:#f8fafb;
+    border:1px solid var(--border);
+    border-radius:8px;
+    padding:15px;
+    line-height:1.6;
+    min-height:50px;
+}
+
+
+/* Evidence */
+
+.evidence-box{
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:15px;
+    background:#fafcfd;
+    margin-top:10px;
+}
+
+.evidence-title{
+    font-weight:700;
+    color:var(--primary);
+    margin-bottom:12px;
+}
+
+.photo-preview{
+    display:block;
+    width:auto;
+    max-width:100%;
+    max-height:430px;
+    margin:0 auto;
+    border-radius:7px;
+    border:1px solid #ccd5dc;
+}
+
+.video-preview{
+    display:block;
+    width:100%;
+    max-height:400px;
+    border-radius:7px;
+    background:#000;
+}
+
+
+/* Verification */
+
+.verification-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+}
+
+.signature-box{
+    border:1px solid var(--border);
+    border-radius:8px;
+    padding:15px;
+    min-height:85px;
+}
+
+.signature-line{
+    margin-top:35px;
+    border-top:1px solid #777;
+    padding-top:5px;
+    font-size:11px;
+    color:#666;
+}
+
+
+/* Footer */
+
+.report-footer{
+    padding:14px 28px;
+    background:#f5f7f9;
+    display:flex;
+    justify-content:space-between;
+    font-size:11px;
+    color:#65727d;
+}
+
+
+/* =====================================================
+   SCREEN
+   ===================================================== */
+
+.no-print{
+    margin-top:18px;
+}
+
+
+/* =====================================================
+   PRINT
+   ===================================================== */
+
+@page{
+    size:A4;
+    margin:12mm;
+}
+
+@media print{
+
+    html,
+    body{
+        background:white !important;
+        margin:0 !important;
+        padding:0 !important;
+    }
+
+    body{
+        -webkit-print-color-adjust:exact;
+        print-color-adjust:exact;
+    }
+
+    .wrap{
+        max-width:none !important;
+        padding:0 !important;
+        margin:0 !important;
+    }
+
+    .no-print{
+        display:none !important;
+    }
+
+    .report-paper{
+        border:1px solid #aaa;
+        border-radius:0;
+        box-shadow:none;
+    }
+
+    .report-section{
+        break-inside:avoid;
+    }
+
+    .evidence-box{
+        break-inside:avoid;
+    }
+
+    .photo-preview{
+        max-height:380px;
+    }
+
+    .video-preview{
+        display:none !important;
+    }
+
+    /* Video link/button will NOT print */
+
+    a{
+        color:inherit !important;
+        text-decoration:none !important;
+    }
+
+}
+
+
+/* =====================================================
+   MOBILE
+   ===================================================== */
+
+@media(max-width:650px){
+
+    .report-header{
+        display:block;
+    }
+
+    .report-title{
+        text-align:left;
+        margin-top:15px;
+    }
+
+    .report-id-box{
+        display:block;
+    }
+
+    .report-date{
+        margin-top:6px;
+    }
+
+    .info-grid{
+        grid-template-columns:1fr;
+    }
+
+    .info-item{
+        border-right:none;
+    }
+
+    .verification-grid{
+        grid-template-columns:1fr;
+    }
+
+}
+
 </style>
 
 </head>
+
 
 <body>
 
 <div class="wrap">
 
-<div class="card" id="report"></div>
+
+<!-- =====================================================
+     REPORT
+     ===================================================== -->
+
+<div id="report"
+     class="report-paper">
+
+</div>
+
+
+<!-- =====================================================
+     SUPERVISOR PANEL
+     ===================================================== -->
 
 <div class="card no-print">
 
 <h2>Supervisor Verification</h2>
 
+
 <label>
+
 Verified By
-<input id="by">
+
+<input
+id="by"
+placeholder="Supervisor name">
+
 </label>
+
 
 <label>
+
 Supervisor Remarks
-<textarea id="remarks"></textarea>
+
+<textarea
+id="remarks"
+placeholder="Enter verification remarks"></textarea>
+
 </label>
 
-<button class="primary" onclick="verify()">
-Verify Report
+
+<button
+class="primary"
+onclick="verify()">
+
+✅ Verify Report
+
 </button>
 
-<button onclick="window.print()">
+
+<button
+onclick="window.print()">
+
 🖨️ Print Report
+
 </button>
+
 
 <div id="msg"></div>
 
 </div>
 
+
 </div>
+
 
 <script>
 
-const API_URL="https://script.google.com/macros/s/AKfycbzqnmmkYRf5kFAn6MPQPbbqfgXhbPcN4oMpZdKL-f2dFa9rtuXaaUmWPPBbo5RalajfTQ/exec";
 
-const x = JSON.parse(
-    localStorage.getItem("nearMissReport") || "null"
+/* =====================================================
+   API
+   ===================================================== */
+
+const API_URL =
+"https://script.google.com/macros/s/AKfycbzqnmmkYRf5kFAn6MPQPbbqfgXhbPcN4oMpZdKL-f2dFa9rtuXaaUmWPPBbo5RalajfTQ/exec";
+
+
+/* =====================================================
+   GET REPORT
+   ===================================================== */
+
+const x =
+JSON.parse(
+localStorage.getItem("nearMissReport") || "null"
 );
 
-if (!x) {
+
+if(!x){
 
     location.href="dashboard.html";
 
 }
 
-else {
+
+else{
+
+
+    /* =================================================
+       DATE
+       ================================================= */
+
+    let reportDate = "";
+
+    if(x.Timestamp){
+
+        try{
+
+            reportDate =
+            new Date(x.Timestamp)
+            .toLocaleString();
+
+        }
+
+        catch(e){
+
+            reportDate =
+            x.Timestamp;
+
+        }
+
+    }
+
+
+    /* =================================================
+       RISK
+       ================================================= */
+
+    let risk =
+    x["Risk Level"] || "Not specified";
+
+    let riskClass =
+    risk.toLowerCase();
+
+
+    /* =================================================
+       PHOTO
+       ================================================= */
 
     let photoHTML = "";
-    let videoHTML = "";
 
-    /* =========================
-       PHOTO
-       ========================= */
 
-    if (x["Photo URL"]) {
+    if(x["Photo URL"]){
 
         photoHTML = `
-        <div class="media-section">
 
-            <div class="media-title">
-                📷 Near Miss Photo
+        <div class="report-section">
+
+            <div class="section-title">
+                Photo Evidence
             </div>
 
-            <img
-                class="photo-preview"
-                src="${x["Photo URL"]}"
-                alt="Near Miss Photo"
-                onerror="this.style.display='none'; document.getElementById('photoError').style.display='block';"
-            >
 
-            <div id="photoError"
-                 style="display:none;text-align:center;color:#b00000;">
-                Photo preview could not be loaded.
-                <br>
-                <a href="${x["Photo URL"]}" target="_blank">
-                    Open Photo
-                </a>
+            <div class="evidence-box">
+
+                <div class="evidence-title">
+                    📷 Near Miss Photo
+                </div>
+
+
+                <img
+                    class="photo-preview"
+                    src="${x["Photo URL"]}"
+                    alt="Near Miss Photo"
+                    onerror="photoError(this)"
+                >
+
+
+                <div
+                    id="photoError"
+                    style="
+                    display:none;
+                    text-align:center;
+                    padding:20px;
+                    color:#a00000;
+                    ">
+
+                    Photo preview is not available.
+
+                </div>
+
             </div>
-
-            <p style="text-align:center;">
-                <a href="${x["Photo URL"]}" target="_blank">
-                    🔗 Open Full Photo
-                </a>
-            </p>
 
         </div>
+
         `;
 
     }
 
 
-    /* =========================
+    /* =================================================
        VIDEO
-       ========================= */
+       ================================================= */
 
-    if (x["Video URL"]) {
+    let videoHTML = "";
+
+
+    if(x["Video URL"]){
 
         videoHTML = `
-        <div class="media-section">
 
-            <div class="media-title">
-                🎥 Near Miss Video
+        <div class="report-section">
+
+            <div class="section-title">
+                Video Evidence
             </div>
 
-            <video
-                class="video-preview"
-                controls
-                preload="metadata"
-            >
-                <source src="${x["Video URL"]}">
-                Your browser does not support video playback.
-            </video>
 
-            <p class="video-print-box">
+            <div class="evidence-box">
 
-                🎥 <b>Near Miss Video Evidence</b>
+                <div class="evidence-title">
+                    🎥 Near Miss Video
+                </div>
 
-                <br><br>
 
-                Video is available at:
+                <video
+                    class="video-preview"
+                    controls
+                    preload="metadata">
 
-                <br>
+                    <source
+                        src="${x["Video URL"]}">
 
-                <a href="${x["Video URL"]}" target="_blank">
-                    ${x["Video URL"]}
-                </a>
+                </video>
 
-                <br><br>
 
-                <b>Note:</b>
-                The video can be opened using the above link.
+                <div
+                    class="video-print-box"
+                    style="
+                    padding:15px;
+                    text-align:center;
+                    border:1px dashed #aaa;
+                    ">
 
-            </p>
+                    🎥 Video evidence is attached
+                    digitally with this report.
 
-            <p style="text-align:center;" class="no-print">
+                </div>
 
-                <a href="${x["Video URL"]}" target="_blank">
-                    🔗 Open Full Video
-                </a>
-
-            </p>
+            </div>
 
         </div>
+
         `;
 
     }
 
 
-    /* =========================
-       REPORT
-       ========================= */
+    /* =================================================
+       REPORT HTML
+       ================================================= */
 
     report.innerHTML = `
 
-    <h1>Safety Near Miss Report</h1>
 
-    <p>
-        <b>Report ID:</b>
-        ${x["Report ID"]}
-    </p>
+    <!-- HEADER -->
+
+    <div class="report-header">
+
+        <div>
+
+            <div class="company-title">
+                MANUFACTURING COMPANY
+            </div>
+
+            <div class="company-subtitle">
+                Safety / HSE Department
+            </div>
+
+        </div>
 
 
-    <div class="grid">
+        <div class="report-title">
 
-        <p>
-            <b>Employee:</b><br>
-            ${x["Employee Name"]}
-        </p>
+            <h1>
+                SAFETY NEAR MISS
+            </h1>
 
-        <p>
-            <b>Employee Code:</b><br>
-            ${x["Employee Code"]}
-        </p>
+            <p>
+                INCIDENT REPORT
+            </p>
 
-        <p>
-            <b>Department:</b><br>
-            ${x.Department}
-        </p>
-
-        <p>
-            <b>Designation:</b><br>
-            ${x.Designation}
-        </p>
-
-        <p>
-            <b>Location:</b><br>
-            ${x.Location}
-        </p>
-
-        <p>
-            <b>Risk Level:</b><br>
-            ${x["Risk Level"]}
-        </p>
+        </div>
 
     </div>
 
 
-    <hr>
+
+    <!-- REPORT ID -->
+
+    <div class="report-id-box">
+
+        <div>
+
+            <div style="
+            font-size:11px;
+            color:#687580;
+            text-transform:uppercase;
+            ">
+            Report Identification
+            </div>
+
+            <div class="report-id">
+                ${x["Report ID"]}
+            </div>
+
+        </div>
 
 
-    <h3>
-        Near Miss Description
-    </h3>
+        <div class="report-date">
 
-    <p>
-        ${x["Near Miss Description"]}
-    </p>
+            <b>Date & Time</b><br>
 
+            ${reportDate}
 
-    <h3>
-        Potential Consequence
-    </h3>
+        </div>
 
-    <p>
-        ${x["Potential Consequence"]}
-    </p>
+    </div>
 
 
-    <h3>
-        Immediate Action
-    </h3>
 
-    <p>
-        ${x["Immediate Action"]}
-    </p>
+    <!-- EMPLOYEE INFORMATION -->
+
+    <div class="report-section">
+
+        <div class="section-title">
+            Employee Information
+        </div>
+
+
+        <div class="info-grid">
+
+
+            <div class="info-item">
+
+                <div class="info-label">
+                    Employee Name
+                </div>
+
+                <div class="info-value">
+                    ${x["Employee Name"] || "-"}
+                </div>
+
+            </div>
+
+
+
+            <div class="info-item">
+
+                <div class="info-label">
+                    Employee Code
+                </div>
+
+                <div class="info-value">
+                    ${x["Employee Code"] || "-"}
+                </div>
+
+            </div>
+
+
+
+            <div class="info-item">
+
+                <div class="info-label">
+                    Department
+                </div>
+
+                <div class="info-value">
+                    ${x.Department || "-"}
+                </div>
+
+            </div>
+
+
+
+            <div class="info-item">
+
+                <div class="info-label">
+                    Designation
+                </div>
+
+                <div class="info-value">
+                    ${x.Designation || "-"}
+                </div>
+
+            </div>
+
+
+
+            <div class="info-item">
+
+                <div class="info-label">
+                    Location
+                </div>
+
+                <div class="info-value">
+                    ${x.Location || "-"}
+                </div>
+
+            </div>
+
+
+
+            <div class="info-item">
+
+                <div class="info-label">
+                    Risk Level
+                </div>
+
+                <div class="info-value">
+
+                    <span
+                    class="risk risk-${riskClass}">
+
+                        ${risk}
+
+                    </span>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- DESCRIPTION -->
+
+    <div class="report-section">
+
+        <div class="section-title">
+            Near Miss Description
+        </div>
+
+        <div class="detail-box">
+            ${x["Near Miss Description"] || "-"}
+        </div>
+
+    </div>
+
+
+
+    <!-- CONSEQUENCE -->
+
+    <div class="report-section">
+
+        <div class="section-title">
+            Potential Consequence
+        </div>
+
+        <div class="detail-box">
+            ${x["Potential Consequence"] || "-"}
+        </div>
+
+    </div>
+
+
+
+    <!-- IMMEDIATE ACTION -->
+
+    <div class="report-section">
+
+        <div class="section-title">
+            Immediate Action Taken
+        </div>
+
+        <div class="detail-box">
+            ${x["Immediate Action"] || "-"}
+        </div>
+
+    </div>
+
 
 
     ${photoHTML}
@@ -328,81 +868,167 @@ else {
     ${videoHTML}
 
 
-    <div class="media-section">
 
-        <h3>
-            Report Status
-        </h3>
+    <!-- VERIFICATION -->
 
-        <p>
-            <b>${x.Status}</b>
-        </p>
+    <div class="report-section">
+
+        <div class="section-title">
+            Verification
+        </div>
+
+
+        <div class="verification-grid">
+
+
+            <div class="signature-box">
+
+                <b>Status</b>
+
+                <br><br>
+
+                ${x.Status || "Pending"}
+
+            </div>
+
+
+
+            <div class="signature-box">
+
+                <b>Verified By</b>
+
+                <div class="signature-line">
+                    Safety Supervisor
+                </div>
+
+            </div>
+
+
+        </div>
 
     </div>
+
+
+
+    <!-- FOOTER -->
+
+    <div class="report-footer">
+
+        <span>
+            Safety / HSE Department
+        </span>
+
+        <span>
+            Near Miss Reporting System
+        </span>
+
+    </div>
+
 
     `;
 
 }
 
 
-/* =========================
-   VERIFY REPORT
-   ========================= */
 
-async function verify() {
+/* =====================================================
+   PHOTO ERROR
+   ===================================================== */
+
+function photoError(img){
+
+    img.style.display="none";
+
+    const error =
+    document.getElementById("photoError");
+
+    if(error){
+
+        error.style.display="block";
+
+    }
+
+}
+
+
+
+/* =====================================================
+   VERIFY
+   ===================================================== */
+
+async function verify(){
+
 
     const payload = {
 
-        action: "verify",
+        action:"verify",
 
-        reportId: x["Report ID"],
+        reportId:
+        x["Report ID"],
 
         verifiedBy:
-            document.getElementById("by").value,
+        document.getElementById("by").value,
 
         remarks:
-            document.getElementById("remarks").value
+        document.getElementById("remarks").value
 
     };
 
 
-    try {
+    try{
 
-        const r = await fetch(
+
+        const r =
+        await fetch(
+
             API_URL,
+
             {
-                method: "POST",
-                body: JSON.stringify(payload)
+
+                method:"POST",
+
+                body:
+                JSON.stringify(payload)
+
             }
+
         );
 
 
-        const j = await r.json();
+        const j =
+        await r.json();
 
 
-        if (j.ok) {
+        if(j.ok){
 
-            document.getElementById("msg").innerHTML =
+            document.getElementById("msg")
+            .innerHTML =
+
             '<div class="success">' +
-            'Report verified successfully.' +
+            '✅ Report verified successfully.' +
             '</div>';
 
         }
 
-        else {
+        else{
 
-            document.getElementById("msg").innerHTML =
+            document.getElementById("msg")
+            .innerHTML =
+
             '<div class="error">' +
             j.error +
             '</div>';
 
         }
 
+
     }
 
-    catch (error) {
+    catch(error){
 
-        document.getElementById("msg").innerHTML =
+        document.getElementById("msg")
+        .innerHTML =
+
         '<div class="error">' +
         'Verification failed: ' +
         error.message +
@@ -415,5 +1041,5 @@ async function verify() {
 </script>
 
 </body>
+
 </html>
-```
