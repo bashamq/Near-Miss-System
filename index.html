@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Safety Near Miss Report</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+<header><h1>Safety Near Miss Report</h1><p>Report an unsafe condition or near miss</p></header>
+
+<form id="reportForm">
+<section class="card">
+<h2>Employee Information</h2>
+<div class="grid">
+<label>Employee Code<input name="employeeCode" required></label>
+<label>Employee Name<input name="employeeName" required></label>
+<label>Department<input name="department" required></label>
+<label>Designation<input name="designation"></label>
+<label>Location<input name="location" required></label>
+<label>Risk Level
+<select name="risk" required><option value="">Select</option><option>Low</option><option>Medium</option><option>High</option><option>Critical</option></select>
+</label>
+</div>
+</section>
+
+<section class="card">
+<h2>Near Miss Details</h2>
+<label>Description<textarea name="description" required></textarea></label>
+<label>Potential Consequence<textarea name="consequence"></textarea></label>
+<label>Immediate Action<textarea name="immediateAction"></textarea></label>
+</section>
+
+<section class="card">
+<h2>Evidence</h2>
+<div class="media-grid">
+<label class="upload">📷 Take Photo<input id="photoCamera" type="file" accept="image/*" capture="environment"></label>
+<label class="upload">🖼️ Choose Photo<input id="photoGallery" type="file" accept="image/*"></label>
+<label class="upload">🎥 Record Video<input id="videoCamera" type="file" accept="video/*" capture="environment"></label>
+<label class="upload">📁 Choose Video<input id="videoGallery" type="file" accept="video/*"></label>
+</div>
+<div id="preview"></div>
+</section>
+
+<button class="primary" type="submit">Submit Near Miss Report</button>
+<div id="msg"></div>
+</form>
+</div>
+<script>
+const API_URL="PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE";
+
+function fileToBase64(file){
+ return new Promise((resolve,reject)=>{
+   if(!file){resolve(null);return}
+   const r=new FileReader();
+   r.onload=()=>resolve({data:r.result.split(",")[1],type:file.type,name:file.name});
+   r.onerror=reject;r.readAsDataURL(file);
+ });
+}
+const $=id=>document.getElementById(id);
+function selectedFile(a,b){return $(a).files[0]||$(b).files[0]||null}
+["photoCamera","photoGallery","videoCamera","videoGallery"].forEach(id=>{
+ $(id).addEventListener("change",()=>{$("preview").innerHTML="<small>Evidence selected.</small>"});
+});
+
+$("reportForm").addEventListener("submit",async e=>{
+ e.preventDefault();
+ if(API_URL.includes("PASTE_")){alert("Please add your Apps Script Web App URL in index.html");return}
+ const f=new FormData(e.target);
+ $("msg").textContent="Submitting...";
+ try{
+   const [photo,video]=await Promise.all([
+     fileToBase64(selectedFile("photoCamera","photoGallery")),
+     fileToBase64(selectedFile("videoCamera","videoGallery"))
+   ]);
+   const payload={action:"submit",employeeCode:f.get("employeeCode"),employeeName:f.get("employeeName"),
+   department:f.get("department"),designation:f.get("designation"),location:f.get("location"),
+   risk:f.get("risk"),description:f.get("description"),consequence:f.get("consequence"),
+   immediateAction:f.get("immediateAction"),photo,video};
+   const res=await fetch(API_URL,{method:"POST",body:JSON.stringify(payload)});
+   const out=await res.json();
+   if(!out.ok) throw new Error(out.error);
+   $("msg").innerHTML=`<div class="success">Report submitted successfully.<br><b>Report ID: ${out.reportId}</b></div>`;
+   e.target.reset();
+ }catch(err){$("msg").innerHTML=`<div class="error">${err.message}</div>`}
+});
+</script>
+</body></html>

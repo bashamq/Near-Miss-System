@@ -1,0 +1,32 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Near Miss Report</title><link rel="stylesheet" href="style.css"></head>
+<body><div class="wrap">
+<div class="card" id="report"></div>
+<div class="card no-print"><h2>Supervisor Verification</h2>
+<label>Verified By<input id="by"></label><label>Supervisor Remarks<textarea id="remarks"></textarea></label>
+<button class="primary" onclick="verify()">Verify Report</button>
+<button onclick="window.print()">🖨️ Print Report</button><div id="msg"></div></div></div>
+<script>
+const API_URL="PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE";
+const x=JSON.parse(localStorage.getItem("nearMissReport")||"null");
+if(!x){location.href="dashboard.html"}
+else{
+ report.innerHTML=`<h1>Safety Near Miss Report</h1>
+ <p><b>Report ID:</b> ${x["Report ID"]}</p>
+ <div class="grid"><p><b>Employee:</b><br>${x["Employee Name"]}</p><p><b>Code:</b><br>${x["Employee Code"]}</p>
+ <p><b>Department:</b><br>${x.Department}</p><p><b>Designation:</b><br>${x.Designation}</p>
+ <p><b>Location:</b><br>${x.Location}</p><p><b>Risk:</b><br>${x["Risk Level"]}</p></div>
+ <hr><h3>Description</h3><p>${x["Near Miss Description"]}</p>
+ <h3>Potential Consequence</h3><p>${x["Potential Consequence"]}</p>
+ <h3>Immediate Action</h3><p>${x["Immediate Action"]}</p>
+ ${x["Photo URL"]?`<p><a href="${x["Photo URL"]}" target="_blank">View Photo</a></p>`:""}
+ ${x["Video URL"]?`<p><a href="${x["Video URL"]}" target="_blank">View Video</a></p>`:""}
+ <p><b>Status:</b> ${x.Status}</p>`;
+}
+async function verify(){
+ const payload={action:"verify",reportId:x["Report ID"],verifiedBy:by.value,remarks:remarks.value};
+ const r=await fetch(API_URL,{method:"POST",body:JSON.stringify(payload)});const j=await r.json();
+ msg.innerHTML=j.ok?'<div class=success>Report verified successfully.</div>':`<div class=error>${j.error}</div>`;
+}
+</script></body></html>

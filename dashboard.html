@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Safety Near Miss Dashboard</title><link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body><div class="wrap wide">
+<header><h1>Safety Near Miss Dashboard</h1><p>Safety monitoring and verification</p></header>
+<div class="stats">
+<div class="stat"><b id="total">0</b><span>Total</span></div>
+<div class="stat"><b id="pending">0</b><span>Pending</span></div>
+<div class="stat"><b id="verified">0</b><span>Verified</span></div>
+<div class="stat"><b id="high">0</b><span>High/Critical</span></div>
+</div>
+<section class="card"><div class="toolbar">
+<input id="search" placeholder="Search employee, department or report ID">
+<select id="dept"><option value="">All Departments</option></select>
+<select id="risk"><option value="">All Risk Levels</option><option>Low</option><option>Medium</option><option>High</option><option>Critical</option></select>
+<button onclick="load()">Refresh</button>
+</div></section>
+<section class="charts">
+<div class="card"><h2>Department-wise Reports</h2><canvas id="deptChart"></canvas></div>
+<div class="card"><h2>Risk Level</h2><canvas id="riskChart"></canvas></div>
+</section>
+<section class="card"><h2>Reports</h2><div id="table"></div></section>
+</div>
+<script>
+const API_URL="PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE"; let reports=[],dc,rc;
+async function load(){
+ if(API_URL.includes("PASTE_")){document.getElementById("table").innerHTML="<div class=error>Add Apps Script URL.</div>";return}
+ const r=await fetch(API_URL,{method:"POST",body:JSON.stringify({action:"list"})});
+ const j=await r.json(); reports=j.reports||[]; fillFilters(); render();
+}
+function fillFilters(){
+ const s=new Set(reports.map(x=>x.Department).filter(Boolean));
+ dept.innerHTML='<option value="">All Departments</option>'+[...s].sort().map(x=>`<option>${x}</option>`).join("");
+}
+function render(){
+ const q=search.value.toLowerCase(), d=dept.value, r=risk.value;
+ const a=reports.filter(x=>(!q||Object.values(x).join(" ").toLowerCase().includes(q))&&(!d||x.Department===d)&&(!r||x["Risk Level"]===r));
+ total.textContent=reports.length; pending.textContent=reports.filter(x=>x.Status==="Pending").length;
+ verified.textContent=reports.filter(x=>x.Status==="Verified").length;
+ high.textContent=reports.filter(x=>["High","Critical"].includes(x["Risk Level"])).length;
+ const dm={}; a.forEach(x=>dm[x.Department]=(dm[x.Department]||0)+1);
+ const rm={}; a.forEach(x=>rm[x["Risk Level"]]=(rm[x["Risk Level"]]||0)+1);
+ if(dc)dc.destroy();if(rc)rc.destroy();
+ dc=new Chart(document.getElementById("deptChart"),{type:"bar",data:{labels:Object.keys(dm),datasets:[{label:"Reports",data:Object.values(dm)}]},options:{responsive:true}});
+ rc=new Chart(document.getElementById("riskChart"),{type:"doughnut",data:{labels:Object.keys(rm),datasets:[{data:Object.values(rm)}]},options:{responsive:true}});
+ table.innerHTML=`<div class="tablewrap"><table><tr><th>ID</th><th>Employee</th><th>Department</th><th>Date</th><th>Risk</th><th>Status</th><th>Action</th></tr>${a.map(x=>`<tr><td>${x["Report ID"]}</td><td>${x["Employee Name"]}</td><td>${x.Department}</td><td>${new Date(x.Timestamp).toLocaleString()}</td><td>${x["Risk Level"]}</td><td>${x.Status}</td><td><button onclick='openReport(${JSON.stringify(x)})'>View</button></td></tr>`).join("")}</table></div>`;
+}
+function openReport(x){
+ localStorage.setItem("nearMissReport",JSON.stringify(x));location.href="report.html";
+}
+search.oninput=render;dept.onchange=render;risk.onchange=render;load();
+</script></body></html>
