@@ -8,7 +8,7 @@
 <button class="primary" onclick="verify()">Verify Report</button>
 <button onclick="window.print()">🖨️ Print Report</button><div id="msg"></div></div></div>
 <script>
-const API_URL="PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE";
+const API_URL="https://script.google.com/macros/s/AKfycbzqnmmkYRf5kFAn6MPQPbbqfgXhbPcN4oMpZdKL-f2dFa9rtuXaaUmWPPBbo5RalajfTQ/exec";
 const x=JSON.parse(localStorage.getItem("nearMissReport")||"null");
 if(!x){location.href="dashboard.html"}
 else{
