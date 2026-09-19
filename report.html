@@ -4,375 +4,610 @@
 <head>
 
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 
-<meta name="viewport"
-content="width=device-width,initial-scale=1">
-
-<title>Safety Near Miss Report</title>
+<title>CEW - Safety Near Miss Report</title>
 
 <link rel="stylesheet" href="style.css">
 
 <style>
 
 /* =====================================================
-   PROFESSIONAL REPORT DESIGN
+   CEW SAFETY NEAR MISS REPORT
+   A4 PROFESSIONAL PRINT DESIGN
    ===================================================== */
 
-:root{
-    --primary:#123b5d;
-    --secondary:#1261a0;
-    --light:#f3f6f9;
-    --border:#d7dee5;
-    --text:#17212b;
+*{
+    box-sizing:border-box;
 }
 
-
-/* Main report */
-
-.report-paper{
-    background:#fff;
-    border:1px solid #d5dce2;
-    border-radius:12px;
-    overflow:hidden;
+body{
+    margin:0;
+    background:#eef2f5;
+    font-family:Arial,Helvetica,sans-serif;
+    color:#172b3a;
 }
 
+.wrap{
+    max-width:1000px;
+    margin:25px auto;
+    padding:15px;
+}
 
-/* Header */
+/* ================= HEADER ================= */
 
 .report-header{
-    background:linear-gradient(135deg,#123b5d,#1261a0);
-    color:white;
-    padding:24px 28px;
+    background:white;
+    border:1px solid #c9d4dd;
+    padding:16px 20px 12px;
+}
+
+.company-header{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    gap:20px;
+    border-bottom:4px solid #174a73;
+    padding-bottom:12px;
 }
 
-.company-title{
+.company-left{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.company-logo{
+    width:55px;
+    height:55px;
+    border:4px solid #173f5f;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
     font-size:25px;
-    font-weight:700;
+    font-weight:bold;
+    color:#173f5f;
 }
 
-.company-subtitle{
-    margin-top:5px;
-    font-size:13px;
-    opacity:.9;
+.company-name{
+    font-size:25px;
+    font-weight:800;
+    color:#173f5f;
 }
+
+.company-sub{
+    font-size:11px;
+    letter-spacing:1px;
+    color:#657785;
+    margin-top:3px;
+}
+
+.safety-message{
+    text-align:right;
+    font-size:15px;
+    font-weight:bold;
+    color:#1b7651;
+    line-height:1.4;
+}
+
+/* ================= TITLE ================= */
 
 .report-title{
-    text-align:right;
-}
-
-.report-title h1{
-    margin:0;
-    font-size:24px;
-}
-
-.report-title p{
-    margin:6px 0 0;
-    font-size:13px;
-}
-
-
-/* Report ID */
-
-.report-id-box{
-    padding:15px 28px;
-    background:#f5f8fa;
-    border-bottom:1px solid var(--border);
-
+    margin-top:15px;
     display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
-
-.report-id{
-    font-size:19px;
-    font-weight:700;
-    color:var(--primary);
-}
-
-.report-date{
-    font-size:13px;
-    color:#596773;
-}
-
-
-/* Section */
-
-.report-section{
-    padding:22px 28px;
-    border-bottom:1px solid var(--border);
-}
-
-.section-title{
-    font-size:16px;
-    font-weight:700;
-    color:var(--primary);
-
-    border-left:4px solid var(--secondary);
-
-    padding-left:10px;
-    margin-bottom:16px;
-}
-
-
-/* Information grid */
-
-.info-grid{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    border:1px solid var(--border);
-    border-radius:8px;
+    border-radius:5px;
     overflow:hidden;
+    border:1px solid #174a73;
 }
 
-.info-item{
-    padding:13px 15px;
-    border-bottom:1px solid var(--border);
-    border-right:1px solid var(--border);
+.title-main{
+    flex:1;
+    background:#173f5f;
+    color:white;
+    padding:14px 18px;
+    font-size:27px;
+    font-weight:800;
+    letter-spacing:.5px;
 }
 
-.info-item:nth-child(even){
-    border-right:none;
+.title-id{
+    width:260px;
+    background:#edf3f7;
+    padding:10px 15px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+.title-id small{
+    font-size:12px;
+    font-weight:bold;
+    color:#425a6b;
+}
+
+.title-id strong{
+    font-size:17px;
+    color:#173f5f;
+    margin-top:4px;
+}
+
+/* ================= EMPLOYEE TABLE ================= */
+
+.info-table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:15px;
+    font-size:13px;
+}
+
+.info-table td{
+    border:1px solid #bfcbd4;
+    padding:9px 11px;
 }
 
 .info-label{
-    font-size:11px;
-    text-transform:uppercase;
-    color:#6b7782;
-    font-weight:700;
-    margin-bottom:4px;
+    background:#edf3f7;
+    font-weight:bold;
+    width:16%;
+    color:#173f5f;
 }
 
 .info-value{
-    font-size:14px;
-    font-weight:600;
+    width:34%;
 }
 
+/* ================= RISK ================= */
 
-/* Risk */
-
-.risk{
-    display:inline-block;
-    padding:6px 15px;
-    border-radius:20px;
-    font-size:12px;
-    font-weight:700;
-}
-
-.risk-low{
-    background:#dff5e5;
-    color:#14652a;
+.risk-high{
+    background:#ffdede !important;
+    color:#c40000 !important;
+    font-weight:800;
 }
 
 .risk-medium{
-    background:#fff1c7;
-    color:#765500;
+    background:#fff0c7 !important;
+    color:#9a6800 !important;
+    font-weight:800;
 }
 
-.risk-high{
-    background:#ffe1d6;
-    color:#a63200;
+.risk-low{
+    background:#def5e7 !important;
+    color:#137542 !important;
 }
 
 .risk-critical{
-    background:#ffd9df;
-    color:#a00024;
+    background:#ffcccc !important;
+    color:#a00000 !important;
+    font-weight:900;
 }
 
+/* ================= MAIN CONTENT ================= */
 
-/* Description boxes */
-
-.detail-box{
-    background:#f8fafb;
-    border:1px solid var(--border);
-    border-radius:8px;
-    padding:15px;
-    line-height:1.6;
-    min-height:50px;
+.main-grid{
+    display:grid;
+    grid-template-columns:1.25fr .85fr;
+    gap:14px;
+    margin-top:15px;
 }
 
+.left-column{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
 
-/* Evidence */
+.section-box{
+    border:1px solid #b9c8d3;
+    background:white;
+    border-radius:3px;
+    overflow:hidden;
+}
+
+.section-heading{
+    background:#edf3f7;
+    color:#173f5f;
+    font-size:14px;
+    font-weight:800;
+    padding:9px 12px;
+    border-bottom:1px solid #b9c8d3;
+}
+
+.section-content{
+    min-height:82px;
+    padding:12px;
+    font-size:13px;
+    line-height:1.45;
+    word-wrap:break-word;
+}
+
+/* ================= EVIDENCE ================= */
 
 .evidence-box{
-    border:1px solid var(--border);
-    border-radius:10px;
-    padding:15px;
-    background:#fafcfd;
-    margin-top:10px;
+    border:1px solid #b9c8d3;
+    background:white;
+    border-radius:3px;
+    overflow:hidden;
+    height:100%;
 }
 
-.evidence-title{
-    font-weight:700;
-    color:var(--primary);
-    margin-bottom:12px;
+.photo-area{
+    padding:10px;
+    text-align:center;
 }
 
-.photo-preview{
-    display:block;
-    width:auto;
-    max-width:100%;
-    max-height:430px;
-    margin:0 auto;
-    border-radius:7px;
-    border:1px solid #ccd5dc;
-}
-
-.video-preview{
+.photo-area img{
     display:block;
     width:100%;
-    max-height:400px;
-    border-radius:7px;
+    max-height:360px;
+    object-fit:contain;
+    border:1px solid #ccd5dc;
+    background:#f4f6f8;
+}
+
+.photo-placeholder{
+    min-height:150px;
+    border:1px dashed #aab8c3;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#7a8993;
+    font-size:13px;
+}
+
+.photo-error{
+    color:#b00000;
+    font-size:12px;
+    padding:10px;
+}
+
+.video-area{
+    padding:10px;
+    border-top:1px solid #d5dde3;
+}
+
+.video-area video{
+    width:100%;
+    max-height:220px;
     background:#000;
 }
 
-
-/* Verification */
-
-.verification-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:15px;
-}
-
-.signature-box{
-    border:1px solid var(--border);
-    border-radius:8px;
-    padding:15px;
-    min-height:85px;
-}
-
-.signature-line{
-    margin-top:35px;
-    border-top:1px solid #777;
-    padding-top:5px;
+.video-link{
+    text-align:center;
+    margin-top:6px;
     font-size:11px;
-    color:#666;
 }
 
+.video-print{
+    display:none;
+}
 
-/* Footer */
+/* ================= STATUS ================= */
+
+.status-box{
+    margin-top:14px;
+    border:1px solid #6ac097;
+    background:#effaf4;
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr 1.5fr;
+}
+
+.status-cell{
+    padding:11px 12px;
+    border-right:1px solid #b9dfca;
+    min-height:70px;
+}
+
+.status-cell:last-child{
+    border-right:none;
+}
+
+.status-label{
+    color:#1b7651;
+    font-size:11px;
+    font-weight:bold;
+    margin-bottom:5px;
+}
+
+.status-value{
+    font-size:14px;
+    font-weight:bold;
+    color:#173f5f;
+}
+
+.status-verified{
+    color:#137542;
+    font-size:17px;
+}
+
+/* ================= FOOTER ================= */
 
 .report-footer{
-    padding:14px 28px;
-    background:#f5f7f9;
-    display:flex;
-    justify-content:space-between;
+    margin-top:18px;
+    text-align:center;
+    border-top:2px solid #173f5f;
+    padding-top:9px;
+    color:#173f5f;
     font-size:11px;
-    color:#65727d;
+    letter-spacing:3px;
+    font-weight:bold;
 }
 
-
-/* =====================================================
-   SCREEN
-   ===================================================== */
+/* ================= SCREEN BUTTON AREA ================= */
 
 .no-print{
-    margin-top:18px;
+    margin-top:20px;
+    background:white;
+    padding:18px;
+    border-radius:10px;
 }
 
+.no-print label{
+    display:block;
+    font-weight:bold;
+    margin:10px 0;
+}
+
+.no-print input,
+.no-print textarea{
+    width:100%;
+    padding:10px;
+    margin-top:5px;
+    border:1px solid #ccd5dd;
+    border-radius:7px;
+}
+
+.no-print textarea{
+    min-height:80px;
+}
+
+.no-print button{
+    padding:11px 18px;
+    border:0;
+    border-radius:7px;
+    cursor:pointer;
+    margin:4px;
+}
+
+.primary-btn{
+    background:#1261a0;
+    color:white;
+}
+
+.print-btn{
+    background:#173f5f;
+    color:white;
+}
 
 /* =====================================================
    PRINT
    ===================================================== */
 
 @page{
-    size:A4;
-    margin:12mm;
+    size:A4 portrait;
+    margin:8mm;
 }
 
 @media print{
 
     html,
     body{
+        width:210mm;
+        height:297mm;
         background:white !important;
         margin:0 !important;
         padding:0 !important;
     }
 
     body{
-        -webkit-print-color-adjust:exact;
-        print-color-adjust:exact;
+        -webkit-print-color-adjust:exact !important;
+        print-color-adjust:exact !important;
     }
 
     .wrap{
-        max-width:none !important;
-        padding:0 !important;
-        margin:0 !important;
+        width:100%;
+        max-width:none;
+        margin:0;
+        padding:0;
     }
 
     .no-print{
         display:none !important;
     }
 
-    .report-paper{
-        border:1px solid #aaa;
-        border-radius:0;
-        box-shadow:none;
+    .report-header{
+        border:0;
+        padding:0;
     }
 
-    .report-section{
-        break-inside:avoid;
+    .company-header{
+        padding-bottom:8px;
     }
 
-    .evidence-box{
-        break-inside:avoid;
+    .company-logo{
+        width:45px;
+        height:45px;
+        font-size:20px;
     }
 
-    .photo-preview{
-        max-height:380px;
+    .company-name{
+        font-size:20px;
     }
 
-    .video-preview{
+    .company-sub{
+        font-size:9px;
+    }
+
+    .safety-message{
+        font-size:11px;
+    }
+
+    .report-title{
+        margin-top:9px;
+    }
+
+    .title-main{
+        font-size:21px;
+        padding:10px 12px;
+    }
+
+    .title-id{
+        width:205px;
+        padding:7px 10px;
+    }
+
+    .title-id small{
+        font-size:9px;
+    }
+
+    .title-id strong{
+        font-size:12px;
+    }
+
+    .info-table{
+        margin-top:9px;
+        font-size:10px;
+    }
+
+    .info-table td{
+        padding:6px 8px;
+    }
+
+    .main-grid{
+        gap:9px;
+        margin-top:9px;
+    }
+
+    .left-column{
+        gap:8px;
+    }
+
+    .section-heading{
+        font-size:11px;
+        padding:6px 8px;
+    }
+
+    .section-content{
+        min-height:55px;
+        padding:7px 8px;
+        font-size:10px;
+        line-height:1.3;
+    }
+
+    .photo-area{
+        padding:7px;
+    }
+
+    .photo-area img{
+        max-height:260px;
+    }
+
+    .photo-placeholder{
+        min-height:110px;
+    }
+
+    .video-area{
+        padding:7px;
+    }
+
+    .video-area video{
         display:none !important;
     }
 
-    /* Video link/button will NOT print */
+    .video-print{
+        display:block !important;
+        font-size:9px;
+        text-align:center;
+        padding:8px;
+        border:1px solid #ccc;
+    }
 
+    .video-link{
+        display:none;
+    }
+
+    .status-box{
+        margin-top:9px;
+    }
+
+    .status-cell{
+        padding:7px 8px;
+        min-height:48px;
+    }
+
+    .status-label{
+        font-size:8px;
+        margin-bottom:3px;
+    }
+
+    .status-value{
+        font-size:10px;
+    }
+
+    .status-verified{
+        font-size:12px;
+    }
+
+    .report-footer{
+        margin-top:9px;
+        padding-top:5px;
+        font-size:8px;
+        letter-spacing:2px;
+    }
+
+    /* Remove links from printed visual */
     a{
         color:inherit !important;
         text-decoration:none !important;
     }
 
+    /* Prevent unwanted page breaks */
+    .section-box,
+    .evidence-box,
+    .status-box{
+        page-break-inside:avoid;
+        break-inside:avoid;
+    }
+
 }
 
 
-/* =====================================================
-   MOBILE
-   ===================================================== */
+/* ================= MOBILE ================= */
 
-@media(max-width:650px){
+@media(max-width:700px){
 
-    .report-header{
-        display:block;
+    .wrap{
+        margin:5px auto;
+        padding:8px;
+    }
+
+    .company-header{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:10px;
+    }
+
+    .safety-message{
+        text-align:left;
     }
 
     .report-title{
-        text-align:left;
-        margin-top:15px;
+        flex-direction:column;
     }
 
-    .report-id-box{
-        display:block;
+    .title-id{
+        width:100%;
     }
 
-    .report-date{
-        margin-top:6px;
-    }
-
-    .info-grid{
+    .main-grid{
         grid-template-columns:1fr;
     }
 
-    .info-item{
+    .status-box{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .status-cell:nth-child(2){
         border-right:none;
-    }
-
-    .verification-grid{
-        grid-template-columns:1fr;
     }
 
 }
@@ -388,22 +623,419 @@ content="width=device-width,initial-scale=1">
 
 
 <!-- =====================================================
-     REPORT
+     PRINTABLE REPORT
      ===================================================== -->
 
-<div id="report"
-     class="report-paper">
+<div id="printReport">
+
+
+<div class="report-header">
+
+
+<!-- ================= COMPANY HEADER ================= -->
+
+<div class="company-header">
+
+<div class="company-left">
+
+<div class="company-logo">
+CEW
+</div>
+
+<div>
+
+<div class="company-name">
+CEW
+</div>
+
+<div class="company-sub">
+SAFETY • QUALITY • PRODUCTIVITY
+</div>
+
+</div>
 
 </div>
 
 
+<div class="safety-message">
+
+SAFE PEOPLE<br>
+STRONG TOMORROW
+
+</div>
+
+</div>
+
+
+
+<!-- ================= TITLE ================= -->
+
+<div class="report-title">
+
+<div class="title-main">
+SAFETY NEAR MISS REPORT
+</div>
+
+<div class="title-id">
+
+<small>REPORT ID</small>
+
+<strong id="reportId">
+-
+</strong>
+
+</div>
+
+</div>
+
+
+
+<!-- ================= EMPLOYEE INFO ================= -->
+
+<table class="info-table">
+
+<tr>
+
+<td class="info-label">
+Employee Name
+</td>
+
+<td class="info-value" id="employeeName">
+-
+</td>
+
+<td class="info-label">
+Employee Code
+</td>
+
+<td class="info-value" id="employeeCode">
+-
+</td>
+
+</tr>
+
+
+<tr>
+
+<td class="info-label">
+Department
+</td>
+
+<td id="department">
+-
+</td>
+
+<td class="info-label">
+Designation
+</td>
+
+<td id="designation">
+-
+</td>
+
+</tr>
+
+
+<tr>
+
+<td class="info-label">
+Location
+</td>
+
+<td id="location">
+-
+</td>
+
+<td class="info-label">
+Risk Level
+</td>
+
+<td id="risk">
+-
+</td>
+
+</tr>
+
+</table>
+
+
+
+<!-- ================= MAIN CONTENT ================= -->
+
+<div class="main-grid">
+
+
+<!-- ================= LEFT ================= -->
+
+<div class="left-column">
+
+
+<div class="section-box">
+
+<div class="section-heading">
+1. NEAR MISS DESCRIPTION
+</div>
+
+<div
+class="section-content"
+id="description">
+-
+</div>
+
+</div>
+
+
+
+<div class="section-box">
+
+<div class="section-heading">
+2. POTENTIAL CONSEQUENCE
+</div>
+
+<div
+class="section-content"
+id="consequence">
+-
+</div>
+
+</div>
+
+
+
+<div class="section-box">
+
+<div class="section-heading">
+3. IMMEDIATE ACTION TAKEN
+</div>
+
+<div
+class="section-content"
+id="immediateAction">
+-
+</div>
+
+</div>
+
+
+</div>
+
+
+
+<!-- ================= RIGHT / EVIDENCE ================= -->
+
+<div class="evidence-box">
+
+
+<div class="section-heading">
+4. EVIDENCE
+</div>
+
+
+<div class="photo-area">
+
+<div style="
+font-weight:bold;
+text-align:left;
+margin-bottom:6px;
+color:#173f5f;
+">
+
+📷 Near Miss Photo
+
+</div>
+
+
+<img
+id="photo"
+style="display:none;"
+alt="Near Miss Photo"
+>
+
+
+<div
+id="photoPlaceholder"
+class="photo-placeholder">
+
+No photo attached
+
+</div>
+
+
+<div
+id="photoError"
+class="photo-error"
+style="display:none;">
+
+Photo preview could not be loaded.
+
+</div>
+
+</div>
+
+
+
+<div
+id="videoSection"
+class="video-area"
+style="display:none;">
+
+<div style="
+font-weight:bold;
+font-size:12px;
+color:#173f5f;
+margin-bottom:6px;
+">
+
+🎥 Near Miss Video
+
+</div>
+
+
+<video
+id="video"
+controls
+preload="metadata">
+
+</video>
+
+
+<div class="video-link">
+
+<a
+id="videoLink"
+href="#"
+target="_blank">
+
+Open Full Video
+
+</a>
+
+</div>
+
+
+<div
+id="videoPrint"
+class="video-print">
+
+🎥 Video evidence is available in the digital report.<br>
+Report ID: <span id="videoReportId"></span>
+
+</div>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+
+<!-- ================= STATUS ================= -->
+
+<div class="status-box">
+
+
+<div class="status-cell">
+
+<div class="status-label">
+REPORT STATUS
+</div>
+
+<div
+class="status-value status-verified"
+id="status">
+
+Pending
+
+</div>
+
+</div>
+
+
+
+<div class="status-cell">
+
+<div class="status-label">
+VERIFIED BY
+</div>
+
+<div
+class="status-value"
+id="verifiedBy">
+
+-
+
+</div>
+
+</div>
+
+
+
+<div class="status-cell">
+
+<div class="status-label">
+VERIFIED AT
+</div>
+
+<div
+class="status-value"
+id="verifiedAt">
+
+-
+
+</div>
+
+</div>
+
+
+
+<div class="status-cell">
+
+<div class="status-label">
+SUPERVISOR REMARKS
+</div>
+
+<div
+class="status-value"
+id="remarksView">
+
+-
+
+</div>
+
+</div>
+
+
+</div>
+
+
+
+<!-- ================= FOOTER ================= -->
+
+<div class="report-footer">
+
+COMMITTED TO A SAFER WORKPLACE
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
 <!-- =====================================================
-     SUPERVISOR PANEL
+     SUPERVISOR SECTION - SCREEN ONLY
      ===================================================== -->
 
-<div class="card no-print">
+<div class="no-print">
 
-<h2>Supervisor Verification</h2>
+<h2>
+Supervisor Verification
+</h2>
 
 
 <label>
@@ -429,18 +1061,19 @@ placeholder="Enter verification remarks"></textarea>
 
 
 <button
-class="primary"
+class="primary-btn"
 onclick="verify()">
 
-✅ Verify Report
+✓ Verify Report
 
 </button>
 
 
 <button
+class="print-btn"
 onclick="window.print()">
 
-🖨️ Print Report
+🖨 Print Report
 
 </button>
 
@@ -453,15 +1086,17 @@ onclick="window.print()">
 </div>
 
 
+
 <script>
 
 
 /* =====================================================
-   API
+   GOOGLE APPS SCRIPT
    ===================================================== */
 
 const API_URL =
 "https://script.google.com/macros/s/AKfycbzqnmmkYRf5kFAn6MPQPbbqfgXhbPcN4oMpZdKL-f2dFa9rtuXaaUmWPPBbo5RalajfTQ/exec";
+
 
 
 /* =====================================================
@@ -474,572 +1109,395 @@ localStorage.getItem("nearMissReport") || "null"
 );
 
 
+
 if(!x){
 
-    location.href="dashboard.html";
+location.href="dashboard.html";
 
 }
-
 
 else{
 
 
-    /* =================================================
-       DATE
-       ================================================= */
+/* ================= BASIC DATA ================= */
 
-    let reportDate = "";
+document.getElementById("reportId").textContent =
+x["Report ID"] || "-";
 
-    if(x.Timestamp){
 
-        try{
+document.getElementById("employeeName").textContent =
+x["Employee Name"] || "-";
 
-            reportDate =
-            new Date(x.Timestamp)
-            .toLocaleString();
 
-        }
+document.getElementById("employeeCode").textContent =
+x["Employee Code"] || "-";
 
-        catch(e){
 
-            reportDate =
-            x.Timestamp;
+document.getElementById("department").textContent =
+x["Department"] || "-";
 
-        }
 
-    }
+document.getElementById("designation").textContent =
+x["Designation"] || "-";
 
 
-    /* =================================================
-       RISK
-       ================================================= */
+document.getElementById("location").textContent =
+x["Location"] || "-";
 
-    let risk =
-    x["Risk Level"] || "Not specified";
 
-    let riskClass =
-    risk.toLowerCase();
+document.getElementById("description").textContent =
+x["Near Miss Description"] || "-";
 
 
-    /* =================================================
-       PHOTO
-       ================================================= */
+document.getElementById("consequence").textContent =
+x["Potential Consequence"] || "-";
 
-    let photoHTML = "";
 
+document.getElementById("immediateAction").textContent =
+x["Immediate Action"] || "-";
 
-    if(x["Photo URL"]){
 
-        photoHTML = `
 
-        <div class="report-section">
+/* ================= RISK ================= */
 
-            <div class="section-title">
-                Photo Evidence
-            </div>
+const risk =
+document.getElementById("risk");
 
+risk.textContent =
+x["Risk Level"] || "-";
 
-            <div class="evidence-box">
 
-                <div class="evidence-title">
-                    📷 Near Miss Photo
-                </div>
+const riskText =
+String(x["Risk Level"] || "").toLowerCase();
 
 
-                <img
-                    class="photo-preview"
-                    src="${x["Photo URL"]}"
-                    alt="Near Miss Photo"
-                    onerror="photoError(this)"
-                >
+if(riskText === "high")
+risk.classList.add("risk-high");
 
 
-                <div
-                    id="photoError"
-                    style="
-                    display:none;
-                    text-align:center;
-                    padding:20px;
-                    color:#a00000;
-                    ">
+else if(riskText === "medium")
+risk.classList.add("risk-medium");
 
-                    Photo preview is not available.
 
-                </div>
+else if(riskText === "low")
+risk.classList.add("risk-low");
 
-            </div>
 
-        </div>
+else if(riskText === "critical")
+risk.classList.add("risk-critical");
 
-        `;
 
-    }
 
+/* ================= STATUS ================= */
 
-    /* =================================================
-       VIDEO
-       ================================================= */
+document.getElementById("status").textContent =
+x["Status"] || "Pending";
 
-    let videoHTML = "";
 
+document.getElementById("verifiedBy").textContent =
+x["Verified By"] || "-";
 
-    if(x["Video URL"]){
 
-        videoHTML = `
+document.getElementById("verifiedAt").textContent =
+formatDate(x["Verified At"]);
 
-        <div class="report-section">
 
-            <div class="section-title">
-                Video Evidence
-            </div>
+document.getElementById("remarksView").textContent =
+x["Supervisor Remarks"] || "-";
 
 
-            <div class="evidence-box">
 
-                <div class="evidence-title">
-                    🎥 Near Miss Video
-                </div>
+/* ================= PHOTO ================= */
 
+if(x["Photo URL"]){
 
-                <video
-                    class="video-preview"
-                    controls
-                    preload="metadata">
+const photo =
+document.getElementById("photo");
 
-                    <source
-                        src="${x["Video URL"]}">
+photo.src =
+x["Photo URL"];
 
-                </video>
+photo.style.display =
+"block";
 
 
-                <div
-                    class="video-print-box"
-                    style="
-                    padding:15px;
-                    text-align:center;
-                    border:1px dashed #aaa;
-                    ">
+document.getElementById(
+"photoPlaceholder"
+).style.display =
+"none";
 
-                    🎥 Video evidence is attached
-                    digitally with this report.
 
-                </div>
+photo.onerror =
+function(){
 
-            </div>
+photo.style.display =
+"none";
 
-        </div>
+document.getElementById(
+"photoPlaceholder"
+).style.display =
+"none";
 
-        `;
+document.getElementById(
+"photoError"
+).style.display =
+"block";
 
-    }
+};
 
+}
 
-    /* =================================================
-       REPORT HTML
-       ================================================= */
 
-    report.innerHTML = `
 
+/* ================= VIDEO ================= */
 
-    <!-- HEADER -->
+if(x["Video URL"]){
 
-    <div class="report-header">
+const videoSection =
+document.getElementById(
+"videoSection"
+);
 
-        <div>
+videoSection.style.display =
+"block";
 
-            <div class="company-title">
-                MANUFACTURING COMPANY
-            </div>
 
-            <div class="company-subtitle">
-                Safety / HSE Department
-            </div>
+const video =
+document.getElementById(
+"video"
+);
 
-        </div>
+video.src =
+x["Video URL"];
 
 
-        <div class="report-title">
+document.getElementById(
+"videoLink"
+).href =
+x["Video URL"];
 
-            <h1>
-                SAFETY NEAR MISS
-            </h1>
 
-            <p>
-                INCIDENT REPORT
-            </p>
+document.getElementById(
+"videoReportId"
+).textContent =
+x["Report ID"];
 
-        </div>
-
-    </div>
-
-
-
-    <!-- REPORT ID -->
-
-    <div class="report-id-box">
-
-        <div>
-
-            <div style="
-            font-size:11px;
-            color:#687580;
-            text-transform:uppercase;
-            ">
-            Report Identification
-            </div>
-
-            <div class="report-id">
-                ${x["Report ID"]}
-            </div>
-
-        </div>
-
-
-        <div class="report-date">
-
-            <b>Date & Time</b><br>
-
-            ${reportDate}
-
-        </div>
-
-    </div>
-
-
-
-    <!-- EMPLOYEE INFORMATION -->
-
-    <div class="report-section">
-
-        <div class="section-title">
-            Employee Information
-        </div>
-
-
-        <div class="info-grid">
-
-
-            <div class="info-item">
-
-                <div class="info-label">
-                    Employee Name
-                </div>
-
-                <div class="info-value">
-                    ${x["Employee Name"] || "-"}
-                </div>
-
-            </div>
-
-
-
-            <div class="info-item">
-
-                <div class="info-label">
-                    Employee Code
-                </div>
-
-                <div class="info-value">
-                    ${x["Employee Code"] || "-"}
-                </div>
-
-            </div>
-
-
-
-            <div class="info-item">
-
-                <div class="info-label">
-                    Department
-                </div>
-
-                <div class="info-value">
-                    ${x.Department || "-"}
-                </div>
-
-            </div>
-
-
-
-            <div class="info-item">
-
-                <div class="info-label">
-                    Designation
-                </div>
-
-                <div class="info-value">
-                    ${x.Designation || "-"}
-                </div>
-
-            </div>
-
-
-
-            <div class="info-item">
-
-                <div class="info-label">
-                    Location
-                </div>
-
-                <div class="info-value">
-                    ${x.Location || "-"}
-                </div>
-
-            </div>
-
-
-
-            <div class="info-item">
-
-                <div class="info-label">
-                    Risk Level
-                </div>
-
-                <div class="info-value">
-
-                    <span
-                    class="risk risk-${riskClass}">
-
-                        ${risk}
-
-                    </span>
-
-                </div>
-
-            </div>
-
-
-        </div>
-
-    </div>
-
-
-
-    <!-- DESCRIPTION -->
-
-    <div class="report-section">
-
-        <div class="section-title">
-            Near Miss Description
-        </div>
-
-        <div class="detail-box">
-            ${x["Near Miss Description"] || "-"}
-        </div>
-
-    </div>
-
-
-
-    <!-- CONSEQUENCE -->
-
-    <div class="report-section">
-
-        <div class="section-title">
-            Potential Consequence
-        </div>
-
-        <div class="detail-box">
-            ${x["Potential Consequence"] || "-"}
-        </div>
-
-    </div>
-
-
-
-    <!-- IMMEDIATE ACTION -->
-
-    <div class="report-section">
-
-        <div class="section-title">
-            Immediate Action Taken
-        </div>
-
-        <div class="detail-box">
-            ${x["Immediate Action"] || "-"}
-        </div>
-
-    </div>
-
-
-
-    ${photoHTML}
-
-    ${videoHTML}
-
-
-
-    <!-- VERIFICATION -->
-
-    <div class="report-section">
-
-        <div class="section-title">
-            Verification
-        </div>
-
-
-        <div class="verification-grid">
-
-
-            <div class="signature-box">
-
-                <b>Status</b>
-
-                <br><br>
-
-                ${x.Status || "Pending"}
-
-            </div>
-
-
-
-            <div class="signature-box">
-
-                <b>Verified By</b>
-
-                <div class="signature-line">
-                    Safety Supervisor
-                </div>
-
-            </div>
-
-
-        </div>
-
-    </div>
-
-
-
-    <!-- FOOTER -->
-
-    <div class="report-footer">
-
-        <span>
-            Safety / HSE Department
-        </span>
-
-        <span>
-            Near Miss Reporting System
-        </span>
-
-    </div>
-
-
-    `;
+}
 
 }
 
 
 
 /* =====================================================
-   PHOTO ERROR
+   DATE FORMAT
    ===================================================== */
 
-function photoError(img){
+function formatDate(value){
 
-    img.style.display="none";
+if(!value)
+return "-";
 
-    const error =
-    document.getElementById("photoError");
+try{
 
-    if(error){
+const d =
+new Date(value);
 
-        error.style.display="block";
+if(isNaN(d.getTime()))
+return value;
 
-    }
+return d.toLocaleString(
+"en-GB",
+{
+day:"2-digit",
+month:"2-digit",
+year:"numeric",
+hour:"2-digit",
+minute:"2-digit"
+}
+);
+
+}
+
+catch(e){
+
+return value;
+
+}
 
 }
 
 
 
 /* =====================================================
-   VERIFY
+   VERIFY REPORT
    ===================================================== */
 
 async function verify(){
 
+const verifiedBy =
+document.getElementById("by").value.trim();
 
-    const payload = {
-
-        action:"verify",
-
-        reportId:
-        x["Report ID"],
-
-        verifiedBy:
-        document.getElementById("by").value,
-
-        remarks:
-        document.getElementById("remarks").value
-
-    };
+const remarks =
+document.getElementById("remarks").value.trim();
 
 
-    try{
+if(!verifiedBy){
+
+alert(
+"Please enter Supervisor name."
+);
+
+return;
+
+}
 
 
-        const r =
-        await fetch(
+const payload = {
 
-            API_URL,
+action:"verify",
 
-            {
+reportId:
+x["Report ID"],
 
-                method:"POST",
+verifiedBy:
+verifiedBy,
 
-                body:
-                JSON.stringify(payload)
+remarks:
+remarks
 
-            }
-
-        );
-
-
-        const j =
-        await r.json();
+};
 
 
-        if(j.ok){
+try{
 
-            document.getElementById("msg")
-            .innerHTML =
+const response =
+await fetch(
 
-            '<div class="success">' +
-            '✅ Report verified successfully.' +
-            '</div>';
+API_URL,
 
-        }
+{
 
-        else{
+method:"POST",
 
-            document.getElementById("msg")
-            .innerHTML =
+body:
+JSON.stringify(payload)
 
-            '<div class="error">' +
-            j.error +
-            '</div>';
+}
 
-        }
+);
 
 
-    }
+const result =
+await response.json();
 
-    catch(error){
 
-        document.getElementById("msg")
-        .innerHTML =
+if(result.ok){
 
-        '<div class="error">' +
-        'Verification failed: ' +
-        error.message +
-        '</div>';
+document.getElementById(
+"msg"
+).innerHTML = `
 
-    }
+<div style="
+background:#dff5e5;
+color:#14652a;
+padding:12px;
+border-radius:8px;
+margin-top:10px;
+">
+
+✓ Report verified successfully.
+
+</div>
+
+`;
+
+
+/* Update printed report immediately */
+
+document.getElementById(
+"status"
+).textContent =
+"Verified";
+
+
+document.getElementById(
+"verifiedBy"
+).textContent =
+verifiedBy;
+
+
+document.getElementById(
+"verifiedAt"
+).textContent =
+formatDate(new Date());
+
+
+document.getElementById(
+"remarksView"
+).textContent =
+remarks || "-";
+
+
+/* Update local storage */
+
+x["Status"] =
+"Verified";
+
+x["Verified By"] =
+verifiedBy;
+
+x["Verified At"] =
+new Date().toISOString();
+
+x["Supervisor Remarks"] =
+remarks;
+
+
+localStorage.setItem(
+"nearMissReport",
+JSON.stringify(x)
+);
+
+}
+
+else{
+
+throw new Error(
+result.error ||
+"Verification failed"
+);
+
+}
+
+}
+
+catch(error){
+
+document.getElementById(
+"msg"
+).innerHTML = `
+
+<div style="
+background:#ffe2e2;
+color:#a00000;
+padding:12px;
+border-radius:8px;
+margin-top:10px;
+">
+
+❌ ${error.message}
+
+</div>
+
+`;
+
+}
+
 
 }
 
 </script>
 
-</body>
 
+</body>
 </html>
