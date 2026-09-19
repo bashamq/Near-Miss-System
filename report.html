@@ -1,614 +1,1097 @@
 <!doctype html>
+
 <html lang="en">
 
 <head>
 
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
 
-<title>CEW - Safety Near Miss Report</title>
+<meta name="viewport"
+content="width=device-width,initial-scale=1">
 
-<link rel="stylesheet" href="style.css">
+<title>
+CEW - Safety Near Miss Report
+</title>
+
+<link rel="stylesheet"
+href="style.css">
+
 
 <style>
 
 /* =====================================================
    CEW SAFETY NEAR MISS REPORT
-   A4 PROFESSIONAL PRINT DESIGN
    ===================================================== */
 
 *{
-    box-sizing:border-box;
+box-sizing:border-box;
 }
+
 
 body{
-    margin:0;
-    background:#eef2f5;
-    font-family:Arial,Helvetica,sans-serif;
-    color:#172b3a;
+
+margin:0;
+
+background:#eef2f5;
+
+font-family:
+Arial,
+Helvetica,
+sans-serif;
+
+color:#172b3a;
+
 }
+
 
 .wrap{
-    max-width:1000px;
-    margin:25px auto;
-    padding:15px;
+
+max-width:1000px;
+
+margin:25px auto;
+
+padding:15px;
+
 }
 
-/* ================= HEADER ================= */
+
+/* =====================================================
+   HEADER
+   ===================================================== */
 
 .report-header{
-    background:white;
-    border:1px solid #c9d4dd;
-    padding:16px 20px 12px;
+
+background:white;
+
+border:1px solid #c9d4dd;
+
+padding:16px 20px 12px;
+
 }
+
 
 .company-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    border-bottom:4px solid #174a73;
-    padding-bottom:12px;
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+border-bottom:4px solid #174a73;
+
+padding-bottom:12px;
+
 }
+
 
 .company-left{
-    display:flex;
-    align-items:center;
-    gap:12px;
+
+display:flex;
+
+align-items:center;
+
+gap:12px;
+
 }
+
 
 .company-logo{
-    width:55px;
-    height:55px;
-    border:4px solid #173f5f;
-    border-radius:50%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:25px;
-    font-weight:bold;
-    color:#173f5f;
+
+width:55px;
+
+height:55px;
+
+border:4px solid #173f5f;
+
+border-radius:50%;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+font-size:16px;
+
+font-weight:bold;
+
+color:#173f5f;
+
 }
+
 
 .company-name{
-    font-size:25px;
-    font-weight:800;
-    color:#173f5f;
+
+font-size:25px;
+
+font-weight:800;
+
+color:#173f5f;
+
 }
+
 
 .company-sub{
-    font-size:11px;
-    letter-spacing:1px;
-    color:#657785;
-    margin-top:3px;
+
+font-size:11px;
+
+letter-spacing:1px;
+
+color:#657785;
+
+margin-top:3px;
+
 }
+
 
 .safety-message{
-    text-align:right;
-    font-size:15px;
-    font-weight:bold;
-    color:#1b7651;
-    line-height:1.4;
+
+text-align:right;
+
+font-size:15px;
+
+font-weight:bold;
+
+color:#1b7651;
+
+line-height:1.4;
+
 }
 
-/* ================= TITLE ================= */
+
+/* =====================================================
+   TITLE
+   ===================================================== */
 
 .report-title{
-    margin-top:15px;
-    display:flex;
-    border-radius:5px;
-    overflow:hidden;
-    border:1px solid #174a73;
+
+margin-top:15px;
+
+display:flex;
+
+border-radius:5px;
+
+overflow:hidden;
+
+border:1px solid #174a73;
+
 }
+
 
 .title-main{
-    flex:1;
-    background:#173f5f;
-    color:white;
-    padding:14px 18px;
-    font-size:27px;
-    font-weight:800;
-    letter-spacing:.5px;
+
+flex:1;
+
+background:#173f5f;
+
+color:white;
+
+padding:14px 18px;
+
+font-size:27px;
+
+font-weight:800;
+
 }
+
 
 .title-id{
-    width:260px;
-    background:#edf3f7;
-    padding:10px 15px;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
+
+width:260px;
+
+background:#edf3f7;
+
+padding:10px 15px;
+
+display:flex;
+
+flex-direction:column;
+
+justify-content:center;
+
 }
+
 
 .title-id small{
-    font-size:12px;
-    font-weight:bold;
-    color:#425a6b;
+
+font-size:12px;
+
+font-weight:bold;
+
+color:#425a6b;
+
 }
+
 
 .title-id strong{
-    font-size:17px;
-    color:#173f5f;
-    margin-top:4px;
+
+font-size:17px;
+
+color:#173f5f;
+
+margin-top:4px;
+
 }
 
-/* ================= EMPLOYEE TABLE ================= */
+
+/* =====================================================
+   INFO TABLE
+   ===================================================== */
 
 .info-table{
-    width:100%;
-    border-collapse:collapse;
-    margin-top:15px;
-    font-size:13px;
+
+width:100%;
+
+border-collapse:collapse;
+
+margin-top:15px;
+
+font-size:13px;
+
 }
+
 
 .info-table td{
-    border:1px solid #bfcbd4;
-    padding:9px 11px;
+
+border:1px solid #bfcbd4;
+
+padding:9px 11px;
+
 }
+
 
 .info-label{
-    background:#edf3f7;
-    font-weight:bold;
-    width:16%;
-    color:#173f5f;
+
+background:#edf3f7;
+
+font-weight:bold;
+
+width:16%;
+
+color:#173f5f;
+
 }
+
 
 .info-value{
-    width:34%;
+
+width:34%;
+
 }
 
-/* ================= RISK ================= */
+
+/* =====================================================
+   RISK
+   ===================================================== */
 
 .risk-high{
-    background:#ffdede !important;
-    color:#c40000 !important;
-    font-weight:800;
+
+background:#ffdede !important;
+
+color:#c40000 !important;
+
+font-weight:800;
+
 }
+
 
 .risk-medium{
-    background:#fff0c7 !important;
-    color:#9a6800 !important;
-    font-weight:800;
+
+background:#fff0c7 !important;
+
+color:#9a6800 !important;
+
+font-weight:800;
+
 }
+
 
 .risk-low{
-    background:#def5e7 !important;
-    color:#137542 !important;
+
+background:#def5e7 !important;
+
+color:#137542 !important;
+
+font-weight:800;
+
 }
+
 
 .risk-critical{
-    background:#ffcccc !important;
-    color:#a00000 !important;
-    font-weight:900;
+
+background:#ffcccc !important;
+
+color:#a00000 !important;
+
+font-weight:900;
+
 }
 
-/* ================= MAIN CONTENT ================= */
+
+/* =====================================================
+   MAIN
+   ===================================================== */
 
 .main-grid{
-    display:grid;
-    grid-template-columns:1.25fr .85fr;
-    gap:14px;
-    margin-top:15px;
+
+display:grid;
+
+grid-template-columns:
+1.25fr .85fr;
+
+gap:14px;
+
+margin-top:15px;
+
 }
+
 
 .left-column{
-    display:flex;
-    flex-direction:column;
-    gap:12px;
+
+display:flex;
+
+flex-direction:column;
+
+gap:12px;
+
 }
+
 
 .section-box{
-    border:1px solid #b9c8d3;
-    background:white;
-    border-radius:3px;
-    overflow:hidden;
+
+border:1px solid #b9c8d3;
+
+background:white;
+
+border-radius:3px;
+
+overflow:hidden;
+
 }
+
 
 .section-heading{
-    background:#edf3f7;
-    color:#173f5f;
-    font-size:14px;
-    font-weight:800;
-    padding:9px 12px;
-    border-bottom:1px solid #b9c8d3;
+
+background:#edf3f7;
+
+color:#173f5f;
+
+font-size:14px;
+
+font-weight:800;
+
+padding:9px 12px;
+
+border-bottom:1px solid #b9c8d3;
+
 }
+
 
 .section-content{
-    min-height:82px;
-    padding:12px;
-    font-size:13px;
-    line-height:1.45;
-    word-wrap:break-word;
+
+min-height:82px;
+
+padding:12px;
+
+font-size:13px;
+
+line-height:1.45;
+
+word-wrap:break-word;
+
 }
 
-/* ================= EVIDENCE ================= */
+
+/* =====================================================
+   EVIDENCE
+   ===================================================== */
 
 .evidence-box{
-    border:1px solid #b9c8d3;
-    background:white;
-    border-radius:3px;
-    overflow:hidden;
-    height:100%;
+
+border:1px solid #b9c8d3;
+
+background:white;
+
+border-radius:3px;
+
+overflow:hidden;
+
+height:100%;
+
 }
+
 
 .photo-area{
-    padding:10px;
-    text-align:center;
+
+padding:10px;
+
+text-align:center;
+
 }
+
 
 .photo-area img{
-    display:block;
-    width:100%;
-    max-height:360px;
-    object-fit:contain;
-    border:1px solid #ccd5dc;
-    background:#f4f6f8;
+
+display:block;
+
+width:100%;
+
+max-height:360px;
+
+object-fit:contain;
+
+border:1px solid #ccd5dc;
+
+background:#f4f6f8;
+
 }
+
 
 .photo-placeholder{
-    min-height:150px;
-    border:1px dashed #aab8c3;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:#7a8993;
-    font-size:13px;
+
+min-height:150px;
+
+border:1px dashed #aab8c3;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+color:#7a8993;
+
+font-size:13px;
+
 }
+
 
 .photo-error{
-    color:#b00000;
-    font-size:12px;
-    padding:10px;
+
+color:#b00000;
+
+font-size:12px;
+
+padding:10px;
+
 }
+
 
 .video-area{
-    padding:10px;
-    border-top:1px solid #d5dde3;
+
+padding:10px;
+
+border-top:1px solid #d5dde3;
+
 }
+
 
 .video-area video{
-    width:100%;
-    max-height:220px;
-    background:#000;
+
+width:100%;
+
+max-height:220px;
+
+background:#000;
+
 }
+
 
 .video-link{
-    text-align:center;
-    margin-top:6px;
-    font-size:11px;
+
+text-align:center;
+
+margin-top:6px;
+
+font-size:11px;
+
 }
+
 
 .video-print{
-    display:none;
+
+display:none;
+
 }
 
-/* ================= STATUS ================= */
+
+/* =====================================================
+   STATUS
+   ===================================================== */
 
 .status-box{
-    margin-top:14px;
-    border:1px solid #6ac097;
-    background:#effaf4;
-    display:grid;
-    grid-template-columns:1fr 1fr 1fr 1.5fr;
+
+margin-top:14px;
+
+border:1px solid #6ac097;
+
+background:#effaf4;
+
+display:grid;
+
+grid-template-columns:
+1fr 1fr 1fr 1.5fr;
+
 }
+
 
 .status-cell{
-    padding:11px 12px;
-    border-right:1px solid #b9dfca;
-    min-height:70px;
+
+padding:11px 12px;
+
+border-right:1px solid #b9dfca;
+
+min-height:70px;
+
 }
+
 
 .status-cell:last-child{
-    border-right:none;
+
+border-right:none;
+
 }
+
 
 .status-label{
-    color:#1b7651;
-    font-size:11px;
-    font-weight:bold;
-    margin-bottom:5px;
+
+color:#1b7651;
+
+font-size:11px;
+
+font-weight:bold;
+
+margin-bottom:5px;
+
 }
+
 
 .status-value{
-    font-size:14px;
-    font-weight:bold;
-    color:#173f5f;
+
+font-size:14px;
+
+font-weight:bold;
+
+color:#173f5f;
+
 }
+
 
 .status-verified{
-    color:#137542;
-    font-size:17px;
+
+color:#137542;
+
+font-size:17px;
+
 }
 
-/* ================= FOOTER ================= */
+
+/* =====================================================
+   FOOTER
+   ===================================================== */
 
 .report-footer{
-    margin-top:18px;
-    text-align:center;
-    border-top:2px solid #173f5f;
-    padding-top:9px;
-    color:#173f5f;
-    font-size:11px;
-    letter-spacing:3px;
-    font-weight:bold;
+
+margin-top:18px;
+
+text-align:center;
+
+border-top:2px solid #173f5f;
+
+padding-top:9px;
+
+color:#173f5f;
+
+font-size:11px;
+
+letter-spacing:3px;
+
+font-weight:bold;
+
 }
 
-/* ================= SCREEN BUTTON AREA ================= */
+
+/* =====================================================
+   SUPERVISOR SCREEN
+   ===================================================== */
 
 .no-print{
-    margin-top:20px;
-    background:white;
-    padding:18px;
-    border-radius:10px;
+
+margin-top:20px;
+
+background:white;
+
+padding:18px;
+
+border-radius:10px;
+
 }
 
+
 .no-print label{
-    display:block;
-    font-weight:bold;
-    margin:10px 0;
+
+display:block;
+
+font-weight:bold;
+
+margin:10px 0;
+
 }
+
 
 .no-print input,
 .no-print textarea{
-    width:100%;
-    padding:10px;
-    margin-top:5px;
-    border:1px solid #ccd5dd;
-    border-radius:7px;
+
+width:100%;
+
+padding:10px;
+
+margin-top:5px;
+
+border:1px solid #ccd5dd;
+
+border-radius:7px;
+
 }
+
 
 .no-print textarea{
-    min-height:80px;
+
+min-height:80px;
+
 }
+
 
 .no-print button{
-    padding:11px 18px;
-    border:0;
-    border-radius:7px;
-    cursor:pointer;
-    margin:4px;
+
+padding:11px 18px;
+
+border:0;
+
+border-radius:7px;
+
+cursor:pointer;
+
+margin:4px;
+
 }
+
 
 .primary-btn{
-    background:#1261a0;
-    color:white;
+
+background:#1261a0;
+
+color:white;
+
 }
 
+
 .print-btn{
-    background:#173f5f;
-    color:white;
+
+background:#173f5f;
+
+color:white;
+
 }
+
 
 /* =====================================================
    PRINT
    ===================================================== */
 
 @page{
-    size:A4 portrait;
-    margin:8mm;
+
+size:A4 portrait;
+
+margin:8mm;
+
 }
+
 
 @media print{
 
-    html,
-    body{
-        width:210mm;
-        height:297mm;
-        background:white !important;
-        margin:0 !important;
-        padding:0 !important;
-    }
+html,
+body{
 
-    body{
-        -webkit-print-color-adjust:exact !important;
-        print-color-adjust:exact !important;
-    }
+width:210mm;
 
-    .wrap{
-        width:100%;
-        max-width:none;
-        margin:0;
-        padding:0;
-    }
+height:297mm;
 
-    .no-print{
-        display:none !important;
-    }
+background:white !important;
 
-    .report-header{
-        border:0;
-        padding:0;
-    }
+margin:0 !important;
 
-    .company-header{
-        padding-bottom:8px;
-    }
-
-    .company-logo{
-        width:45px;
-        height:45px;
-        font-size:20px;
-    }
-
-    .company-name{
-        font-size:20px;
-    }
-
-    .company-sub{
-        font-size:9px;
-    }
-
-    .safety-message{
-        font-size:11px;
-    }
-
-    .report-title{
-        margin-top:9px;
-    }
-
-    .title-main{
-        font-size:21px;
-        padding:10px 12px;
-    }
-
-    .title-id{
-        width:205px;
-        padding:7px 10px;
-    }
-
-    .title-id small{
-        font-size:9px;
-    }
-
-    .title-id strong{
-        font-size:12px;
-    }
-
-    .info-table{
-        margin-top:9px;
-        font-size:10px;
-    }
-
-    .info-table td{
-        padding:6px 8px;
-    }
-
-    .main-grid{
-        gap:9px;
-        margin-top:9px;
-    }
-
-    .left-column{
-        gap:8px;
-    }
-
-    .section-heading{
-        font-size:11px;
-        padding:6px 8px;
-    }
-
-    .section-content{
-        min-height:55px;
-        padding:7px 8px;
-        font-size:10px;
-        line-height:1.3;
-    }
-
-    .photo-area{
-        padding:7px;
-    }
-
-    .photo-area img{
-        max-height:260px;
-    }
-
-    .photo-placeholder{
-        min-height:110px;
-    }
-
-    .video-area{
-        padding:7px;
-    }
-
-    .video-area video{
-        display:none !important;
-    }
-
-    .video-print{
-        display:block !important;
-        font-size:9px;
-        text-align:center;
-        padding:8px;
-        border:1px solid #ccc;
-    }
-
-    .video-link{
-        display:none;
-    }
-
-    .status-box{
-        margin-top:9px;
-    }
-
-    .status-cell{
-        padding:7px 8px;
-        min-height:48px;
-    }
-
-    .status-label{
-        font-size:8px;
-        margin-bottom:3px;
-    }
-
-    .status-value{
-        font-size:10px;
-    }
-
-    .status-verified{
-        font-size:12px;
-    }
-
-    .report-footer{
-        margin-top:9px;
-        padding-top:5px;
-        font-size:8px;
-        letter-spacing:2px;
-    }
-
-    /* Remove links from printed visual */
-    a{
-        color:inherit !important;
-        text-decoration:none !important;
-    }
-
-    /* Prevent unwanted page breaks */
-    .section-box,
-    .evidence-box,
-    .status-box{
-        page-break-inside:avoid;
-        break-inside:avoid;
-    }
+padding:0 !important;
 
 }
 
 
-/* ================= MOBILE ================= */
+body{
+
+-webkit-print-color-adjust:exact !important;
+
+print-color-adjust:exact !important;
+
+}
+
+
+.wrap{
+
+width:100%;
+
+max-width:none;
+
+margin:0;
+
+padding:0;
+
+}
+
+
+.no-print{
+
+display:none !important;
+
+}
+
+
+.report-header{
+
+border:0;
+
+padding:0;
+
+}
+
+
+.company-header{
+
+padding-bottom:8px;
+
+}
+
+
+.company-logo{
+
+width:45px;
+
+height:45px;
+
+font-size:13px;
+
+}
+
+
+.company-name{
+
+font-size:20px;
+
+}
+
+
+.company-sub{
+
+font-size:9px;
+
+}
+
+
+.safety-message{
+
+font-size:11px;
+
+}
+
+
+.report-title{
+
+margin-top:9px;
+
+}
+
+
+.title-main{
+
+font-size:21px;
+
+padding:10px 12px;
+
+}
+
+
+.title-id{
+
+width:205px;
+
+padding:7px 10px;
+
+}
+
+
+.title-id small{
+
+font-size:9px;
+
+}
+
+
+.title-id strong{
+
+font-size:12px;
+
+}
+
+
+.info-table{
+
+margin-top:9px;
+
+font-size:10px;
+
+}
+
+
+.info-table td{
+
+padding:6px 8px;
+
+}
+
+
+.main-grid{
+
+gap:9px;
+
+margin-top:9px;
+
+}
+
+
+.left-column{
+
+gap:8px;
+
+}
+
+
+.section-heading{
+
+font-size:11px;
+
+padding:6px 8px;
+
+}
+
+
+.section-content{
+
+min-height:55px;
+
+padding:7px 8px;
+
+font-size:10px;
+
+line-height:1.3;
+
+}
+
+
+.photo-area{
+
+padding:7px;
+
+}
+
+
+.photo-area img{
+
+max-height:260px;
+
+}
+
+
+.photo-placeholder{
+
+min-height:110px;
+
+}
+
+
+.video-area{
+
+padding:7px;
+
+}
+
+
+.video-area video{
+
+display:none !important;
+
+}
+
+
+.video-print{
+
+display:block !important;
+
+font-size:9px;
+
+text-align:center;
+
+padding:8px;
+
+border:1px solid #ccc;
+
+}
+
+
+.video-link{
+
+display:none;
+
+}
+
+
+.status-box{
+
+margin-top:9px;
+
+}
+
+
+.status-cell{
+
+padding:7px 8px;
+
+min-height:48px;
+
+}
+
+
+.status-label{
+
+font-size:8px;
+
+}
+
+
+.status-value{
+
+font-size:10px;
+
+}
+
+
+.status-verified{
+
+font-size:12px;
+
+}
+
+
+.report-footer{
+
+margin-top:9px;
+
+padding-top:5px;
+
+font-size:8px;
+
+letter-spacing:2px;
+
+}
+
+
+a{
+
+color:inherit !important;
+
+text-decoration:none !important;
+
+}
+
+
+.section-box,
+.evidence-box,
+.status-box{
+
+page-break-inside:avoid;
+
+break-inside:avoid;
+
+}
+
+}
+
+
+/* =====================================================
+   MOBILE
+   ===================================================== */
 
 @media(max-width:700px){
 
-    .wrap{
-        margin:5px auto;
-        padding:8px;
-    }
+.wrap{
 
-    .company-header{
-        flex-direction:column;
-        align-items:flex-start;
-        gap:10px;
-    }
+margin:5px auto;
 
-    .safety-message{
-        text-align:left;
-    }
+padding:8px;
 
-    .report-title{
-        flex-direction:column;
-    }
+}
 
-    .title-id{
-        width:100%;
-    }
 
-    .main-grid{
-        grid-template-columns:1fr;
-    }
+.company-header{
 
-    .status-box{
-        grid-template-columns:1fr 1fr;
-    }
+flex-direction:column;
 
-    .status-cell:nth-child(2){
-        border-right:none;
-    }
+align-items:flex-start;
+
+gap:10px;
+
+}
+
+
+.safety-message{
+
+text-align:left;
+
+}
+
+
+.report-title{
+
+flex-direction:column;
+
+}
+
+
+.title-id{
+
+width:100%;
+
+}
+
+
+.main-grid{
+
+grid-template-columns:1fr;
+
+}
+
+
+.status-box{
+
+grid-template-columns:1fr 1fr;
+
+}
+
+
+.status-cell:nth-child(2){
+
+border-right:none;
+
+}
 
 }
 
@@ -618,6 +1101,7 @@ body{
 
 
 <body>
+
 
 <div class="wrap">
 
@@ -632,7 +1116,7 @@ body{
 <div class="report-header">
 
 
-<!-- ================= COMPANY HEADER ================= -->
+<!-- COMPANY HEADER -->
 
 <div class="company-header">
 
@@ -668,7 +1152,7 @@ STRONG TOMORROW
 
 
 
-<!-- ================= TITLE ================= -->
+<!-- TITLE -->
 
 <div class="report-title">
 
@@ -690,7 +1174,7 @@ SAFETY NEAR MISS REPORT
 
 
 
-<!-- ================= EMPLOYEE INFO ================= -->
+<!-- EMPLOYEE INFO -->
 
 <table class="info-table">
 
@@ -700,7 +1184,8 @@ SAFETY NEAR MISS REPORT
 Employee Name
 </td>
 
-<td class="info-value" id="employeeName">
+<td class="info-value"
+id="employeeName">
 -
 </td>
 
@@ -708,7 +1193,8 @@ Employee Name
 Employee Code
 </td>
 
-<td class="info-value" id="employeeCode">
+<td class="info-value"
+id="employeeCode">
 -
 </td>
 
@@ -760,12 +1246,12 @@ Risk Level
 
 
 
-<!-- ================= MAIN CONTENT ================= -->
+<!-- MAIN -->
 
 <div class="main-grid">
 
 
-<!-- ================= LEFT ================= -->
+<!-- LEFT -->
 
 <div class="left-column">
 
@@ -821,10 +1307,9 @@ id="immediateAction">
 
 
 
-<!-- ================= RIGHT / EVIDENCE ================= -->
+<!-- RIGHT -->
 
 <div class="evidence-box">
-
 
 <div class="section-heading">
 4. EVIDENCE
@@ -868,11 +1353,23 @@ style="display:none;">
 
 Photo preview could not be loaded.
 
-</div>
+<br>
+
+<a id="photoLink"
+href="#"
+target="_blank">
+
+Open Photo
+
+</a>
 
 </div>
 
+</div>
 
+
+
+<!-- VIDEO -->
 
 <div
 id="videoSection"
@@ -895,7 +1392,6 @@ margin-bottom:6px;
 id="video"
 controls
 preload="metadata">
-
 </video>
 
 
@@ -917,8 +1413,12 @@ Open Full Video
 id="videoPrint"
 class="video-print">
 
-🎥 Video evidence is available in the digital report.<br>
-Report ID: <span id="videoReportId"></span>
+🎥 Video evidence available in digital report.
+
+<br>
+
+Report ID:
+<span id="videoReportId"></span>
 
 </div>
 
@@ -931,7 +1431,7 @@ Report ID: <span id="videoReportId"></span>
 
 
 
-<!-- ================= STATUS ================= -->
+<!-- STATUS -->
 
 <div class="status-box">
 
@@ -953,7 +1453,6 @@ Pending
 </div>
 
 
-
 <div class="status-cell">
 
 <div class="status-label">
@@ -971,7 +1470,6 @@ id="verifiedBy">
 </div>
 
 
-
 <div class="status-cell">
 
 <div class="status-label">
@@ -987,7 +1485,6 @@ id="verifiedAt">
 </div>
 
 </div>
-
 
 
 <div class="status-cell">
@@ -1011,7 +1508,7 @@ id="remarksView">
 
 
 
-<!-- ================= FOOTER ================= -->
+<!-- FOOTER -->
 
 <div class="report-footer">
 
@@ -1023,15 +1520,15 @@ COMMITTED TO A SAFER WORKPLACE
 </div>
 
 
-</div>
-
-
 
 <!-- =====================================================
-     SUPERVISOR SECTION - SCREEN ONLY
+     SUPERVISOR VERIFICATION
+     SCREEN ONLY
      ===================================================== -->
 
-<div class="no-print">
+<div
+class="no-print"
+id="verificationPanel">
 
 <h2>
 Supervisor Verification
@@ -1061,6 +1558,7 @@ placeholder="Enter verification remarks"></textarea>
 
 
 <button
+id="verifyBtn"
 class="primary-btn"
 onclick="verify()">
 
@@ -1078,6 +1576,26 @@ onclick="window.print()">
 </button>
 
 
+<div
+id="verifiedLock"
+style="
+display:none;
+background:#e8f7ee;
+border:1px solid #70c394;
+color:#137542;
+padding:12px;
+border-radius:8px;
+margin-top:10px;
+font-weight:bold;
+">
+
+🔒 This report has already been verified.
+<br>
+It cannot be verified again.
+
+</div>
+
+
 <div id="msg"></div>
 
 </div>
@@ -1091,7 +1609,7 @@ onclick="window.print()">
 
 
 /* =====================================================
-   GOOGLE APPS SCRIPT
+   GOOGLE APPS SCRIPT URL
    ===================================================== */
 
 const API_URL =
@@ -1100,122 +1618,206 @@ const API_URL =
 
 
 /* =====================================================
-   GET REPORT
+   LOAD REPORT
    ===================================================== */
 
 const x =
 JSON.parse(
-localStorage.getItem("nearMissReport") || "null"
+localStorage.getItem(
+"nearMissReport"
+) || "null"
 );
-
 
 
 if(!x){
 
-location.href="dashboard.html";
+location.href =
+"dashboard.html";
 
 }
 
 else{
 
 
-/* ================= BASIC DATA ================= */
+/* BASIC DATA */
 
-document.getElementById("reportId").textContent =
+document.getElementById(
+"reportId"
+).textContent =
 x["Report ID"] || "-";
 
 
-document.getElementById("employeeName").textContent =
+document.getElementById(
+"employeeName"
+).textContent =
 x["Employee Name"] || "-";
 
 
-document.getElementById("employeeCode").textContent =
+document.getElementById(
+"employeeCode"
+).textContent =
 x["Employee Code"] || "-";
 
 
-document.getElementById("department").textContent =
+document.getElementById(
+"department"
+).textContent =
 x["Department"] || "-";
 
 
-document.getElementById("designation").textContent =
+document.getElementById(
+"designation"
+).textContent =
 x["Designation"] || "-";
 
 
-document.getElementById("location").textContent =
+document.getElementById(
+"location"
+).textContent =
 x["Location"] || "-";
 
 
-document.getElementById("description").textContent =
+document.getElementById(
+"description"
+).textContent =
 x["Near Miss Description"] || "-";
 
 
-document.getElementById("consequence").textContent =
+document.getElementById(
+"consequence"
+).textContent =
 x["Potential Consequence"] || "-";
 
 
-document.getElementById("immediateAction").textContent =
+document.getElementById(
+"immediateAction"
+).textContent =
 x["Immediate Action"] || "-";
 
 
 
-/* ================= RISK ================= */
+/* =====================================================
+   RISK
+   ===================================================== */
 
 const risk =
-document.getElementById("risk");
+document.getElementById(
+"risk"
+);
+
 
 risk.textContent =
 x["Risk Level"] || "-";
 
 
 const riskText =
-String(x["Risk Level"] || "").toLowerCase();
+String(
+x["Risk Level"] || ""
+)
+.toLowerCase();
 
 
-if(riskText === "high")
-risk.classList.add("risk-high");
+if(
+riskText === "high"
+)
+risk.classList.add(
+"risk-high"
+);
 
 
-else if(riskText === "medium")
-risk.classList.add("risk-medium");
+else if(
+riskText === "medium"
+)
+risk.classList.add(
+"risk-medium"
+);
 
 
-else if(riskText === "low")
-risk.classList.add("risk-low");
+else if(
+riskText === "low"
+)
+risk.classList.add(
+"risk-low"
+);
 
 
-else if(riskText === "critical")
-risk.classList.add("risk-critical");
+else if(
+riskText === "critical"
+)
+risk.classList.add(
+"risk-critical"
+);
 
 
 
-/* ================= STATUS ================= */
+/* =====================================================
+   STATUS
+   ===================================================== */
 
-document.getElementById("status").textContent =
+document.getElementById(
+"status"
+).textContent =
 x["Status"] || "Pending";
 
 
-document.getElementById("verifiedBy").textContent =
+document.getElementById(
+"verifiedBy"
+).textContent =
 x["Verified By"] || "-";
 
 
-document.getElementById("verifiedAt").textContent =
-formatDate(x["Verified At"]);
+document.getElementById(
+"verifiedAt"
+).textContent =
+formatDate(
+x["Verified At"]
+);
 
 
-document.getElementById("remarksView").textContent =
+document.getElementById(
+"remarksView"
+).textContent =
 x["Supervisor Remarks"] || "-";
 
 
 
-/* ================= PHOTO ================= */
+/* =====================================================
+   LOCK VERIFIED REPORT
+   ===================================================== */
 
-if(x["Photo URL"]){
+if(
+String(
+x["Status"] || ""
+)
+.trim()
+.toLowerCase()
+===
+"verified"
+){
+
+lockVerification();
+
+}
+
+
+
+/* =====================================================
+   PHOTO
+   ===================================================== */
+
+if(
+x["Photo URL"]
+){
 
 const photo =
-document.getElementById("photo");
+document.getElementById(
+"photo"
+);
+
 
 photo.src =
 x["Photo URL"];
+
 
 photo.style.display =
 "block";
@@ -1227,16 +1829,18 @@ document.getElementById(
 "none";
 
 
+document.getElementById(
+"photoLink"
+).href =
+x["Photo URL"];
+
+
 photo.onerror =
 function(){
 
 photo.style.display =
 "none";
 
-document.getElementById(
-"photoPlaceholder"
-).style.display =
-"none";
 
 document.getElementById(
 "photoError"
@@ -1249,14 +1853,19 @@ document.getElementById(
 
 
 
-/* ================= VIDEO ================= */
+/* =====================================================
+   VIDEO
+   ===================================================== */
 
-if(x["Video URL"]){
+if(
+x["Video URL"]
+){
 
 const videoSection =
 document.getElementById(
 "videoSection"
 );
+
 
 videoSection.style.display =
 "block";
@@ -1266,6 +1875,7 @@ const video =
 document.getElementById(
 "video"
 );
+
 
 video.src =
 x["Video URL"];
@@ -1289,6 +1899,44 @@ x["Report ID"];
 
 
 /* =====================================================
+   LOCK FUNCTION
+   ===================================================== */
+
+function lockVerification(){
+
+const verifyBtn =
+document.getElementById(
+"verifyBtn"
+);
+
+
+const lock =
+document.getElementById(
+"verifiedLock"
+);
+
+
+if(verifyBtn){
+
+verifyBtn.style.display =
+"none";
+
+}
+
+
+if(lock){
+
+lock.style.display =
+"block";
+
+}
+
+
+}
+
+
+
+/* =====================================================
    DATE FORMAT
    ===================================================== */
 
@@ -1297,22 +1945,38 @@ function formatDate(value){
 if(!value)
 return "-";
 
+
 try{
 
 const d =
 new Date(value);
 
-if(isNaN(d.getTime()))
+
+if(
+isNaN(
+d.getTime()
+)
+){
+
 return value;
+
+}
+
 
 return d.toLocaleString(
 "en-GB",
 {
+
 day:"2-digit",
+
 month:"2-digit",
+
 year:"numeric",
+
 hour:"2-digit",
+
 minute:"2-digit"
+
 }
 );
 
@@ -1329,16 +1993,71 @@ return value;
 
 
 /* =====================================================
-   VERIFY REPORT
+   VERIFY
    ===================================================== */
 
 async function verify(){
 
+
+/* =========================================
+   FRONTEND LOCK
+   ========================================= */
+
+if(
+String(
+x["Status"] || ""
+)
+.trim()
+.toLowerCase()
+===
+"verified"
+){
+
+lockVerification();
+
+
+document.getElementById(
+"msg"
+).innerHTML = `
+
+<div style="
+background:#e8f7ee;
+color:#137542;
+padding:12px;
+border-radius:8px;
+margin-top:10px;
+font-weight:bold;
+">
+
+🔒 This report is already verified.
+<br>
+It cannot be verified again.
+
+</div>
+
+`;
+
+
+return;
+
+}
+
+
+
+/* =========================================
+   GET SUPERVISOR DATA
+   ========================================= */
+
 const verifiedBy =
-document.getElementById("by").value.trim();
+document.getElementById(
+"by"
+).value.trim();
+
 
 const remarks =
-document.getElementById("remarks").value.trim();
+document.getElementById(
+"remarks"
+).value.trim();
 
 
 if(!verifiedBy){
@@ -1352,9 +2071,15 @@ return;
 }
 
 
+
+/* =========================================
+   PAYLOAD
+   ========================================= */
+
 const payload = {
 
-action:"verify",
+action:
+"verify",
 
 reportId:
 x["Report ID"],
@@ -1368,7 +2093,26 @@ remarks
 };
 
 
+
 try{
+
+
+document.getElementById(
+"verifyBtn"
+).disabled =
+true;
+
+
+document.getElementById(
+"verifyBtn"
+).textContent =
+"Verifying...";
+
+
+
+/* =========================================
+   SEND
+   ========================================= */
 
 const response =
 await fetch(
@@ -1380,7 +2124,9 @@ API_URL,
 method:"POST",
 
 body:
-JSON.stringify(payload)
+JSON.stringify(
+payload
+)
 
 }
 
@@ -1391,28 +2137,97 @@ const result =
 await response.json();
 
 
-if(result.ok){
+
+/* =========================================
+   ALREADY VERIFIED
+   ========================================= */
+
+if(
+result.alreadyVerified
+){
+
+x["Status"] =
+"Verified";
+
+
+localStorage.setItem(
+"nearMissReport",
+JSON.stringify(x)
+);
+
+
+lockVerification();
+
 
 document.getElementById(
 "msg"
 ).innerHTML = `
 
 <div style="
-background:#dff5e5;
-color:#14652a;
+background:#fff3cd;
+color:#856404;
 padding:12px;
 border-radius:8px;
 margin-top:10px;
+font-weight:bold;
 ">
 
-✓ Report verified successfully.
+🔒 This report has already been verified.
 
 </div>
 
 `;
 
 
-/* Update printed report immediately */
+return;
+
+}
+
+
+
+/* =========================================
+   ERROR
+   ========================================= */
+
+if(!result.ok){
+
+throw new Error(
+result.error ||
+"Verification failed."
+);
+
+}
+
+
+
+/* =========================================
+   SUCCESS
+   ========================================= */
+
+x["Status"] =
+"Verified";
+
+
+x["Verified By"] =
+verifiedBy;
+
+
+x["Verified At"] =
+new Date().toISOString();
+
+
+x["Supervisor Remarks"] =
+remarks;
+
+
+localStorage.setItem(
+"nearMissReport",
+JSON.stringify(x)
+);
+
+
+
+/* UPDATE PRINT REPORT */
 
 document.getElementById(
 "status"
@@ -1429,7 +2244,9 @@ verifiedBy;
 document.getElementById(
 "verifiedAt"
 ).textContent =
-formatDate(new Date());
+formatDate(
+x["Verified At"]
+);
 
 
 document.getElementById(
@@ -1438,40 +2255,54 @@ document.getElementById(
 remarks || "-";
 
 
-/* Update local storage */
 
-x["Status"] =
-"Verified";
+/* LOCK */
 
-x["Verified By"] =
-verifiedBy;
-
-x["Verified At"] =
-new Date().toISOString();
-
-x["Supervisor Remarks"] =
-remarks;
+lockVerification();
 
 
-localStorage.setItem(
-"nearMissReport",
-JSON.stringify(x)
-);
 
-}
+/* MESSAGE */
 
-else{
+document.getElementById(
+"msg"
+).innerHTML = `
 
-throw new Error(
-result.error ||
-"Verification failed"
-);
+<div style="
+background:#dff5e5;
+color:#14652a;
+padding:12px;
+border-radius:8px;
+margin-top:10px;
+font-weight:bold;
+">
 
-}
+✓ Report verified successfully.
+
+<br>
+
+🔒 Verification is now locked.
+
+</div>
+
+`;
 
 }
 
 catch(error){
+
+
+document.getElementById(
+"verifyBtn"
+).disabled =
+false;
+
+
+document.getElementById(
+"verifyBtn"
+).textContent =
+"✓ Verify Report";
+
 
 document.getElementById(
 "msg"
@@ -1493,11 +2324,10 @@ margin-top:10px;
 
 }
 
-
 }
 
 </script>
 
-
 </body>
+
 </html>
